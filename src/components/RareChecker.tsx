@@ -1,7 +1,13 @@
 import { useMemo, useState } from "react";
 import rareData from "../../data/rare_slots.json";
 import type { RareData, StatValues } from "../types";
-import { evaluateRare, evaluateRareAllVariants, listRareSlotIds } from "../lib/evaluateRare";
+import {
+  describeRareRule,
+  evaluateRare,
+  evaluateRareAllVariants,
+  listRareSlotIds,
+  listRareTargets,
+} from "../lib/evaluateRare";
 import { VerdictBar } from "./VerdictBar";
 import { StatInputs } from "./StatInputs";
 import { MaxRollsPanel } from "./MaxRollsPanel";
@@ -20,33 +26,39 @@ const emptyStats = (slotId: string): StatValues => {
 
 export function RareChecker() {
   const [slotId, setSlotId] = useState(SLOT_IDS[0] ?? "amulet");
-  const [variantId, setVariantId] = useState<string>("auto");
   const [values, setValues] = useState<StatValues>(() => emptyStats(slotId));
+  const [pickedTarget, setPickedTarget] = useState<string | null>(null);
 
   const slot = data.slots[slotId];
   const hasVariants = Boolean(slot?.variants?.length);
 
+  const statLabels = useMemo(
+    () => Object.fromEntries((slot?.stats ?? []).map((s) => [s.id, s.label])),
+    [slot],
+  );
+  const targets = useMemo(() => (slot ? listRareTargets(slot) : []), [slot]);
+
   const onSlotChange = (id: string) => {
     setSlotId(id);
     setValues(emptyStats(id));
-    setVariantId("auto");
+    setPickedTarget(null);
   };
 
-  const result = useMemo(() => {
+  const liveResult = useMemo(() => {
     if (!slot) {
       return { verdict: "CHUCK" as const, reasons: ["Unknown slot."] };
     }
-    if (hasVariants && variantId === "auto") {
-      return evaluateRareAllVariants(slot, values);
-    }
-    return evaluateRare(
-      slot,
-      values,
-      variantId === "auto" ? undefined : variantId,
-    );
-  }, [slot, values, variantId, hasVariants]);
+    return hasVariants
+      ? evaluateRareAllVariants(slot, values)
+      : evaluateRare(slot, values);
+  }, [slot, values, hasVariants]);
 
   if (!slot) return null;
+
+  const picked = targets.find((t) => t.id === pickedTarget) ?? null;
+  const result = picked
+    ? describeRareRule(picked.rule, statLabels, picked.label)
+    : liveResult;
 
   return (
     <section className="item-checker" aria-label="Rare item checker">
@@ -67,26 +79,37 @@ export function RareChecker() {
         </select>
       </label>
 
-      {hasVariants && (
-        <label className="field">
-          <span className="field__label">Build</span>
-          <select
-            className="slot-select"
-            value={variantId}
-            onChange={(e) => setVariantId(e.target.value)}
-          >
-            <option value="auto">Auto (best match)</option>
-            {slot.variants!.map((v) => (
-              <option key={v.id} value={v.id}>
-                {v.label}
-              </option>
+      {targets.length > 0 && (
+        <>
+          <p className="preset-section__title">Known keep targets (tap)</p>
+          <div className="btn-row">
+            {targets.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                className={`chip ${pickedTarget === t.id ? "chip--active" : ""} ${
+                  t.rule.verdict === "KEEP" ? "chip--preset-keep" : ""
+                }`}
+                onClick={() =>
+                  setPickedTarget(pickedTarget === t.id ? null : t.id)
+                }
+              >
+                {t.label}
+              </button>
             ))}
-          </select>
-        </label>
+          </div>
+        </>
       )}
 
       <p className="preset-section__title">Enter affix values</p>
-      <StatInputs stats={slot.stats} values={values} onChange={setValues} />
+      <StatInputs
+        stats={slot.stats}
+        values={values}
+        onChange={(v) => {
+          setValues(v);
+          setPickedTarget(null);
+        }}
+      />
 
       <MaxRollsPanel maxRolls={slot.max_rolls} />
     </section>

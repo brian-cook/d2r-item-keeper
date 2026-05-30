@@ -35,7 +35,7 @@ export function BaseChecker() {
         e.preventDefault();
         searchRef.current?.focus();
       }
-      if (selected && !unsocketed && "3456".includes(e.key)) {
+      if (selected && !unsocketed && "0123456".includes(e.key)) {
         setSockets(Number(e.key));
       }
       if (e.key === "e" || e.key === "E") {
@@ -105,7 +105,9 @@ export function BaseChecker() {
                 <span className="base-list__name">{b.name}</span>
                 <span className="base-list__meta">
                   {formatCategory(b.category)} · {b.eth_policy} ·{" "}
-                  {b.sockets_preferred.join("/")}s
+                  {b.sockets_preferred.length > 0
+                    ? `${b.sockets_preferred.join("/")}s`
+                    : "skip"}
                 </span>
               </button>
             </li>
@@ -119,8 +121,34 @@ export function BaseChecker() {
             <strong>{selected.name}</strong>
             <span className="base-detail__cat">{formatCategory(selected.category)}</span>
             <p className="base-detail__policy">
-              {selected.eth_policy} · sockets {selected.sockets_preferred.join(", ")}
+              {selected.eth_policy} ·{" "}
+              {selected.sockets_preferred.length > 0
+                ? `sought ${selected.sockets_preferred.join("/")}s`
+                : "no sought sockets"}
+              {selected.max_sockets !== undefined && (
+                <>
+                  {" "}
+                  · max {selected.max_sockets}
+                  {selected.sockets_preferred.length > 0 &&
+                    ` (Larzuk gives ${selected.max_sockets})`}
+                </>
+              )}
             </p>
+          </div>
+
+          <div
+            className={`keep-target ${
+              selected.sockets_preferred.length === 0 ? "keep-target--skip" : ""
+            }`}
+          >
+            <p className="preset-section__title">Keep target</p>
+            <p className="keep-target__line">
+              {ethTargetLabel(selected.eth_policy)} ·{" "}
+              {selected.sockets_preferred.length > 0
+                ? `${selected.sockets_preferred.join(" / ")} sockets`
+                : "no useful socket count — skip"}
+            </p>
+            {selected.notes && <p className="keep-target__note">{selected.notes}</p>}
           </div>
 
           <fieldset className="field eth-field">
@@ -162,16 +190,23 @@ export function BaseChecker() {
             </label>
             {!unsocketed && (
               <div className="btn-row socket-row">
-                {SOCKET_OPTIONS.map((n) => (
-                  <button
-                    key={n}
-                    type="button"
-                    className={`chip ${sockets === n ? "chip--active" : ""}`}
-                    onClick={() => setSockets(n)}
-                  >
-                    {n}
-                  </button>
-                ))}
+                {SOCKET_OPTIONS.map((n) => {
+                  const impossible =
+                    selected.max_sockets !== undefined && n > selected.max_sockets;
+                  return (
+                    <button
+                      key={n}
+                      type="button"
+                      className={`chip ${sockets === n ? "chip--active" : ""} ${
+                        impossible ? "chip--impossible" : ""
+                      }`}
+                      title={impossible ? `${selected.name} cannot have ${n} sockets` : undefined}
+                      onClick={() => setSockets(n)}
+                    >
+                      {n}
+                    </button>
+                  );
+                })}
               </div>
             )}
           </fieldset>
@@ -236,6 +271,12 @@ export function BaseChecker() {
       )}
     </section>
   );
+}
+
+function ethTargetLabel(policy: ItemBase["eth_policy"]): string {
+  if (policy === "ETH") return "Ethereal only";
+  if (policy === "NORM") return "Non-ethereal only";
+  return "Eth or non-eth";
 }
 
 function EthButton({

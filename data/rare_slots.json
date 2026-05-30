@@ -8,21 +8,22 @@
         "class_skills": 2,
         "fcr": 10,
         "life": 40,
-        "mana": 40,
-        "str": 15,
-        "dex": 15,
-        "all_res": 10,
+        "mana": 60,
+        "str": 20,
+        "dex": 20,
+        "all_res": 20,
         "single_res": 40,
-        "mf": 10
+        "ar": 20,
+        "mf": 15
       },
       "stats": [
         { "id": "class_skills", "label": "+Class Skills", "max": 2 },
         { "id": "fcr", "label": "FCR %", "max": 10 },
         { "id": "life", "label": "Life", "max": 40 },
-        { "id": "mana", "label": "Mana", "max": 40 },
-        { "id": "str", "label": "Strength", "max": 15 },
-        { "id": "dex", "label": "Dexterity", "max": 15 },
-        { "id": "all_res", "label": "All Res %", "max": 10 },
+        { "id": "mana", "label": "Mana", "max": 60 },
+        { "id": "str", "label": "Strength", "max": 20 },
+        { "id": "dex", "label": "Dexterity", "max": 20 },
+        { "id": "all_res", "label": "All Res % (Prismatic)", "max": 20 },
         { "id": "single_res", "label": "Single Res %", "max": 40 }
       ],
       "rules": [
@@ -69,7 +70,7 @@
         "mana": 70,
         "str": 30,
         "dex": 30,
-        "all_res": 10,
+        "all_res": 20,
         "single_res": 40,
         "sockets": 2
       },
@@ -80,7 +81,7 @@
         { "id": "mana", "label": "Mana", "max": 70 },
         { "id": "str", "label": "Strength", "max": 30 },
         { "id": "dex", "label": "Dexterity", "max": 30 },
-        { "id": "all_res", "label": "All Res %", "max": 10 },
+        { "id": "all_res", "label": "All Res % (Prismatic)", "max": 20 },
         { "id": "single_res", "label": "Single Res %", "max": 40 },
         { "id": "sockets", "label": "Sockets", "max": 2 }
       ],
@@ -108,20 +109,18 @@
     },
     "gloves": {
       "label": "Rare Gloves",
-      "max_rolls": { "ias": 20, "cb": 20, "ow": 35, "ll": 7, "ml": 7, "str": 15, "dex": 15 },
+      "max_rolls": { "ias": 20, "ll": 5, "ml": 7, "str": 15, "dex": 15, "life": 20, "single_res": 30 },
       "stats": [
         { "id": "ias", "label": "IAS %", "max": 20 },
-        { "id": "jav_skills", "label": "+Jav Skills", "max": 2 },
+        { "id": "jav_skills", "label": "+Jav/Spear Skills", "max": 2 },
         { "id": "bow_skills", "label": "+Bow Skills", "max": 2 },
-        { "id": "warlock_skills", "label": "+Warlock Skills", "max": 2 },
-        { "id": "cb", "label": "Crushing Blow %", "max": 20 },
-        { "id": "ow", "label": "Open Wounds %", "max": 35 },
-        { "id": "ll", "label": "Life Leech %", "max": 7 },
+        { "id": "ma_skills", "label": "+Martial Arts Skills", "max": 2 },
+        { "id": "ll", "label": "Life Leech %", "max": 5 },
         { "id": "ml", "label": "Mana Leech %", "max": 7 },
         { "id": "str", "label": "Strength", "max": 15 },
         { "id": "dex", "label": "Dexterity", "max": 15 },
         { "id": "life", "label": "Life", "max": 20 },
-        { "id": "single_res", "label": "Single Res %", "max": 40 }
+        { "id": "single_res", "label": "Single Res %", "max": 30 }
       ],
       "variants": [
         {
@@ -159,41 +158,30 @@
           }
         },
         {
-          "id": "smiter",
-          "label": "Smiter",
+          "id": "melee",
+          "label": "Melee (IAS + leech/stats)",
           "rule": {
             "verdict": "KEEP",
             "core": [{ "stat": "ias", "op": ">=", "value": 20 }],
             "secondary_min_count": 2,
             "secondaries": [
-              { "stat": "cb", "op": ">=", "value": 10 },
-              { "stat": "ow", "op": ">=", "value": 15 },
-              { "stat": "life", "op": ">=", "value": 10 }
-            ]
-          }
-        },
-        {
-          "id": "barb",
-          "label": "Barb melee",
-          "rule": {
-            "verdict": "KEEP",
-            "core": [{ "stat": "ias", "op": ">=", "value": 20 }],
-            "secondary_min_count": 2,
-            "secondaries": [
-              { "stat": "ll", "op": ">=", "value": 5 },
+              { "stat": "ll", "op": ">=", "value": 3 },
               { "stat": "ml", "op": ">=", "value": 3 },
-              { "stat": "str", "op": ">=", "value": 10 }
-            ]
+              { "stat": "str", "op": ">=", "value": 10 },
+              { "stat": "dex", "op": ">=", "value": 10 },
+              { "stat": "life", "op": ">=", "value": 10 }
+            ],
+            "note": "Crushing Blow for Smiters comes from CRAFTED Blood Gloves, not rare - rares cannot roll CB/OW."
           }
         },
         {
-          "id": "warlock",
-          "label": "Warlock",
+          "id": "ma",
+          "label": "Martial Arts Sin",
           "rule": {
             "verdict": "KEEP",
             "core": [
-              { "stat": "ias", "op": ">=", "value": 20 },
-              { "stat": "warlock_skills", "op": ">=", "value": 1 }
+              { "stat": "ma_skills", "op": ">=", "value": 2 },
+              { "stat": "ias", "op": ">=", "value": 20 }
             ],
             "secondary_min_count": 0,
             "secondaries": []
@@ -230,7 +218,7 @@
           "res_min_count": 2,
           "res_min_value": 20,
           "res_stats": ["fire_res", "cold_res", "light_res", "poison_res"],
-          "note": "Ideal: tri-res 30–40% each + 10% FHR."
+          "note": "Ideal: 30% FRW + tri-res 30-40% each + 10% FHR. (40% FRW is magic-only.)"
         },
         {
           "id": "high_res_no_frw",
@@ -295,54 +283,55 @@
       "label": "Rare Ring",
       "max_rolls": {
         "fcr": 10,
-        "ll": 7,
+        "ll": 5,
         "ml": 7,
         "str": 20,
         "dex": 20,
-        "life": 30,
-        "mana": 30,
-        "ar": 150,
-        "single_res": 40,
-        "all_res": 10
+        "life": 40,
+        "mana": 40,
+        "ar": 120,
+        "single_res": 30
       },
       "stats": [
         { "id": "fcr", "label": "FCR %", "max": 10 },
-        { "id": "ll", "label": "Life Leech %", "max": 7 },
+        { "id": "ll", "label": "Life Leech %", "max": 5 },
         { "id": "ml", "label": "Mana Leech %", "max": 7 },
         { "id": "str", "label": "Strength", "max": 20 },
         { "id": "dex", "label": "Dexterity", "max": 20 },
-        { "id": "life", "label": "Life", "max": 30 },
-        { "id": "mana", "label": "Mana", "max": 30 },
-        { "id": "single_res", "label": "Single Res %", "max": 40 },
-        { "id": "all_res", "label": "All Res %", "max": 10 }
+        { "id": "life", "label": "Life", "max": 40 },
+        { "id": "mana", "label": "Mana", "max": 40 },
+        { "id": "ar", "label": "Attack Rating", "max": 120 },
+        { "id": "single_res", "label": "Single Res %", "max": 30 }
       ],
       "rules": [
         {
-          "id": "fcr_melee",
-          "label": "FCR + leech + stats",
+          "id": "fcr_caster",
+          "label": "FCR + stats/res",
           "verdict": "KEEP",
           "core": [{ "stat": "fcr", "op": ">=", "value": 10 }],
           "secondary_min_count": 2,
           "secondaries": [
-            { "stat": "ll", "op": ">=", "value": 5 },
-            { "stat": "ml", "op": ">=", "value": 3 },
             { "stat": "str", "op": ">=", "value": 10 },
             { "stat": "dex", "op": ">=", "value": 10 },
             { "stat": "life", "op": ">=", "value": 20 },
-            { "stat": "mana", "op": ">=", "value": 20 }
+            { "stat": "mana", "op": ">=", "value": 20 },
+            { "stat": "single_res", "op": ">=", "value": 20 }
           ]
         },
         {
-          "id": "double_leech",
-          "label": "Double leech (no FCR)",
-          "verdict": "CHECK",
-          "core": [
-            { "stat": "ll", "op": ">=", "value": 5 },
-            { "stat": "ml", "op": ">=", "value": 5 }
+          "id": "melee_leech_ar",
+          "label": "Melee: leech + AR + stats",
+          "verdict": "KEEP",
+          "core": [{ "stat": "ll", "op": ">=", "value": 4 }],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "ml", "op": ">=", "value": 4 },
+            { "stat": "ar", "op": ">=", "value": 80 },
+            { "stat": "str", "op": ">=", "value": 15 },
+            { "stat": "dex", "op": ">=", "value": 15 },
+            { "stat": "life", "op": ">=", "value": 20 }
           ],
-          "secondary_min_count": 1,
-          "secondaries": [{ "stat": "str", "op": ">=", "value": 15 }],
-          "note": "Melee ring without FCR — still valuable."
+          "note": "Life leech is BiS for melee rings (no FCR build). 100+ AR (Platinum, max 120) is a strong filler mod."
         }
       ]
     },
@@ -383,14 +372,14 @@
     },
     "shield": {
       "label": "Rare Shield",
-      "max_rolls": { "all_res": 40, "pdr": 20, "sockets": 2 },
+      "max_rolls": { "all_res": 40, "pdr": 15, "sockets": 2 },
       "stats": [
         { "id": "sockets", "label": "Sockets", "max": 2 },
         { "id": "all_res", "label": "All Res %", "max": 40 },
         { "id": "fire_res", "label": "Fire Res %", "max": 40 },
         { "id": "cold_res", "label": "Cold Res %", "max": 40 },
         { "id": "light_res", "label": "Light Res %", "max": 40 },
-        { "id": "pdr", "label": "PDR %", "max": 20 }
+        { "id": "pdr", "label": "PDR %", "max": 15 }
       ],
       "rules": [
         {
@@ -401,12 +390,12 @@
           "secondary_min_count": 2,
           "secondaries": [
             { "stat": "all_res", "op": ">=", "value": 10 },
-            { "stat": "pdr", "op": ">=", "value": 10 },
+            { "stat": "pdr", "op": ">=", "value": 7 },
             { "stat": "fire_res", "op": ">=", "value": 25 },
             { "stat": "cold_res", "op": ">=", "value": 25 },
             { "stat": "light_res", "op": ">=", "value": 25 }
           ],
-          "note": "Rare Monarch with resists is viable."
+          "note": "Rare Monarch/Pala shield with sockets + resists is viable."
         }
       ]
     },
@@ -416,8 +405,11 @@
         "demon_binding": 3,
         "demon_skills": 3,
         "chaos_skills": 3,
+        "eldritch_skills": 3,
         "fcr": 20,
-        "all_res": 10
+        "all_res": 20,
+        "life": 60,
+        "mana": 60
       },
       "stats": [
         { "id": "demon_binding", "label": "+Demon Binding", "max": 3 },
@@ -425,7 +417,7 @@
         { "id": "chaos_skills", "label": "+Chaos Skills", "max": 3 },
         { "id": "eldritch_skills", "label": "+Eldritch Skills", "max": 3 },
         { "id": "fcr", "label": "FCR %", "max": 20 },
-        { "id": "all_res", "label": "All Res %", "max": 10 },
+        { "id": "all_res", "label": "All Res %", "max": 20 },
         { "id": "life", "label": "Life", "max": 60 },
         { "id": "mana", "label": "Mana", "max": 60 }
       ],
@@ -442,9 +434,7 @@
           "id": "tree_fcr",
           "label": "+3 skill tree + FCR",
           "verdict": "KEEP",
-          "core": [
-            { "stat": "fcr", "op": ">=", "value": 10 }
-          ],
+          "core": [{ "stat": "fcr", "op": ">=", "value": 10 }],
           "any_skill_tree_min": 3,
           "skill_tree_stats": ["demon_skills", "chaos_skills", "eldritch_skills"],
           "secondary_min_count": 0,
@@ -464,6 +454,215 @@
             { "stat": "mana", "op": ">=", "value": 25 }
           ],
           "note": "Trade value in S14 even if not full BiS."
+        }
+      ]
+    },
+    "jewel": {
+      "label": "Rare Jewel",
+      "max_rolls": { "ed": 40, "ias": 15, "max_dmg": 15, "ar": 60, "all_res": 15 },
+      "stats": [
+        { "id": "ed", "label": "Enhanced Damage %", "max": 40 },
+        { "id": "ias", "label": "IAS %", "max": 15 },
+        { "id": "max_dmg", "label": "+Max Damage", "max": 15 },
+        { "id": "ar", "label": "Attack Rating", "max": 60 },
+        { "id": "all_res", "label": "All Res %", "max": 15 }
+      ],
+      "rules": [
+        {
+          "id": "ed_ias",
+          "label": "High ED + IAS",
+          "verdict": "KEEP",
+          "core": [
+            { "stat": "ed", "op": ">=", "value": 30 },
+            { "stat": "ias", "op": ">=", "value": 15 }
+          ],
+          "secondary_min_count": 0,
+          "secondaries": [],
+          "note": "Rare jewel can stack 4 mods (e.g. 40 ED / 15 IAS / 9 max / AR) - best go in weapons."
+        },
+        {
+          "id": "ed_max",
+          "label": "ED + max damage (+res)",
+          "verdict": "KEEP",
+          "core": [{ "stat": "ed", "op": ">=", "value": 30 }],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "max_dmg", "op": ">=", "value": 9 },
+            { "stat": "ias", "op": ">=", "value": 15 },
+            { "stat": "all_res", "op": ">=", "value": 8 }
+          ]
+        }
+      ]
+    },
+    "bow": {
+      "label": "Rare Bow (Bowazon)",
+      "max_rolls": { "ed": 450, "ias": 20, "max_dmg": 63, "ar": 250, "skills": 3, "sockets": 2 },
+      "stats": [
+        { "id": "ed", "label": "Enhanced Damage %", "max": 450 },
+        { "id": "ias", "label": "IAS % (bow cap 20)", "max": 20 },
+        { "id": "max_dmg", "label": "+Max Damage", "max": 63 },
+        { "id": "ar", "label": "Attack Rating", "max": 250 },
+        { "id": "skills", "label": "+Amazon/Bow Skills", "max": 3 },
+        { "id": "sockets", "label": "Sockets", "max": 2 }
+      ],
+      "rules": [
+        {
+          "id": "godly_bow",
+          "label": "God-roll bow",
+          "verdict": "KEEP",
+          "core": [{ "stat": "ed", "op": ">=", "value": 200 }],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "ias", "op": ">=", "value": 20 },
+            { "stat": "max_dmg", "op": ">=", "value": 20 },
+            { "stat": "skills", "op": ">=", "value": 2 },
+            { "stat": "sockets", "op": ">=", "value": 2 },
+            { "stat": "ar", "op": ">=", "value": 150 }
+          ],
+          "note": "Only god rolls beat Faith/Windforce: Cruel ~200-300% ED + 20 IAS + 2 sockets / max dmg / Amazon skills. Best bases: Grand Matron, Matriarchal, Shadow or Ward Bow. Anything less = chuck."
+        }
+      ]
+    },
+    "melee": {
+      "label": "Rare Melee Weapon (rarely worth it)",
+      "max_rolls": { "ed": 450, "ias": 40, "max_dmg": 63, "ar": 250, "ll": 8, "sockets": 2 },
+      "stats": [
+        { "id": "ed", "label": "Enhanced Damage %", "max": 450 },
+        { "id": "ias", "label": "IAS %", "max": 40 },
+        { "id": "max_dmg", "label": "+Max Damage", "max": 63 },
+        { "id": "ar", "label": "Attack Rating", "max": 250 },
+        { "id": "ll", "label": "Life Leech %", "max": 8 },
+        { "id": "sockets", "label": "Sockets", "max": 2 },
+        { "id": "eth", "label": "Ethereal", "type": "bool" }
+      ],
+      "rules": [
+        {
+          "id": "godly_melee",
+          "label": "God-roll melee",
+          "verdict": "KEEP",
+          "core": [{ "stat": "ed", "op": ">=", "value": 200 }],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "eth", "op": "==", "value": 1 },
+            { "stat": "ias", "op": ">=", "value": 30 },
+            { "stat": "sockets", "op": ">=", "value": 2 },
+            { "stat": "ll", "op": ">=", "value": 4 },
+            { "stat": "ar", "op": ">=", "value": 150 },
+            { "stat": "max_dmg", "op": ">=", "value": 30 }
+          ],
+          "note": "Runewords (Grief/Death/BotD/Fortitude) and uniques almost always win. Keep ONLY a god roll: ETH + Cruel ~300% ED (or Fool's AR+max/level) + IAS + 2 sockets. Otherwise chuck. (Caster +skill weapons are separate slots below.)"
+        }
+      ]
+    },
+    "scepter": {
+      "label": "Rare Scepter (Paladin +skills)",
+      "max_rolls": { "main_skill": 3, "second_skill": 3, "pala_skills": 2, "skill_tab": 3, "sockets": 2 },
+      "stats": [
+        { "id": "main_skill", "label": "+Main Skill (e.g. B. Hammer)", "max": 3 },
+        { "id": "second_skill", "label": "+Support Skill (Conc/aura)", "max": 3 },
+        { "id": "pala_skills", "label": "+Paladin Skills (Priest's)", "max": 2 },
+        { "id": "skill_tab", "label": "+Skill Tab (Combat/Auras)", "max": 3 },
+        { "id": "sockets", "label": "Sockets", "max": 2 }
+      ],
+      "rules": [
+        {
+          "id": "godly_scepter",
+          "label": "Caster scepter (Hammerdin/Auradin)",
+          "verdict": "KEEP",
+          "core": [{ "stat": "main_skill", "op": ">=", "value": 3 }],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "second_skill", "op": ">=", "value": 2 },
+            { "stat": "pala_skills", "op": ">=", "value": 2 },
+            { "stat": "skill_tab", "op": ">=", "value": 3 }
+          ],
+          "note": "Scepters CANNOT roll FCR (get it from other gear). Value = stacked +skills: a +3 main skill staffmod plus +2 Paladin (Priest's) or +3 tab. A great one rivals a budget Heart of the Oak."
+        },
+        {
+          "id": "partial_scepter",
+          "label": "Decent scepter",
+          "verdict": "CHECK",
+          "core": [{ "stat": "main_skill", "op": ">=", "value": 2 }],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "second_skill", "op": ">=", "value": 2 },
+            { "stat": "pala_skills", "op": ">=", "value": 2 },
+            { "stat": "skill_tab", "op": ">=", "value": 2 }
+          ],
+          "note": "Usable budget weapon; re-roll/upgrade toward a +3 main skill."
+        }
+      ]
+    },
+    "orb": {
+      "label": "Rare Sorceress Orb (+skills)",
+      "max_rolls": { "main_skill": 3, "skill_tab": 3, "sorc_skills": 2, "fcr": 20, "mana": 60, "life": 40 },
+      "stats": [
+        { "id": "main_skill", "label": "+Main Skill (staffmod)", "max": 3 },
+        { "id": "skill_tab", "label": "+Skill Tab (Fire/Cold/Light)", "max": 3 },
+        { "id": "sorc_skills", "label": "+Sorc Skills (Arch-Angel's)", "max": 2 },
+        { "id": "fcr", "label": "FCR %", "max": 20 },
+        { "id": "mana", "label": "Mana", "max": 60 },
+        { "id": "life", "label": "Life", "max": 40 }
+      ],
+      "rules": [
+        {
+          "id": "godly_orb",
+          "label": "Caster orb",
+          "verdict": "KEEP",
+          "core": [{ "stat": "fcr", "op": ">=", "value": 20 }],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "main_skill", "op": ">=", "value": 3 },
+            { "stat": "skill_tab", "op": ">=", "value": 3 },
+            { "stat": "sorc_skills", "op": ">=", "value": 2 }
+          ],
+          "note": "Orbs roll up to 20% FCR. BiS = +3 to your skill (staffmod) or +3 tab + 20 FCR + mana. Leaves the shield slot free vs a 2H staff."
+        },
+        {
+          "id": "skill_orb",
+          "label": "High +skills, lower FCR",
+          "verdict": "CHECK",
+          "core": [{ "stat": "main_skill", "op": ">=", "value": 3 }],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "fcr", "op": ">=", "value": 10 },
+            { "stat": "sorc_skills", "op": ">=", "value": 2 },
+            { "stat": "mana", "op": ">=", "value": 30 }
+          ]
+        }
+      ]
+    },
+    "wand": {
+      "label": "Rare Necromancer Wand (+skills)",
+      "max_rolls": { "main_skill": 3, "skill_tab": 3, "necro_skills": 2, "fcr": 20, "sockets": 2 },
+      "stats": [
+        { "id": "main_skill", "label": "+Main Skill (Bone Spear/Spirit)", "max": 3 },
+        { "id": "skill_tab", "label": "+Skill Tab (Summon/P&B/Curses)", "max": 3 },
+        { "id": "necro_skills", "label": "+Necro Skills", "max": 2 },
+        { "id": "fcr", "label": "FCR %", "max": 20 },
+        { "id": "sockets", "label": "Sockets", "max": 2 }
+      ],
+      "rules": [
+        {
+          "id": "godly_wand",
+          "label": "Caster wand",
+          "verdict": "KEEP",
+          "core": [{ "stat": "fcr", "op": ">=", "value": 10 }],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "main_skill", "op": ">=", "value": 3 },
+            { "stat": "skill_tab", "op": ">=", "value": 3 },
+            { "stat": "necro_skills", "op": ">=", "value": 2 }
+          ],
+          "note": "Wands roll FCR (unlike scepters). BiS = +3 Bone Spear/Bone Spirit (staffmod) or +3 P&B tab + 20 FCR. (White 2-socket wands make the White runeword.)"
+        },
+        {
+          "id": "skill_wand",
+          "label": "High +skills, lower FCR",
+          "verdict": "CHECK",
+          "core": [{ "stat": "main_skill", "op": ">=", "value": 3 }],
+          "secondary_min_count": 0,
+          "secondaries": []
         }
       ]
     }

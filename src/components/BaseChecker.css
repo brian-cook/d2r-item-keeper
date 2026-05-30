@@ -130,6 +130,19 @@
   cursor: not-allowed;
 }
 
+.chip--impossible {
+  opacity: 0.4;
+  border-style: dashed;
+  border-color: rgba(200, 80, 80, 0.6);
+  text-decoration: line-through;
+}
+
+.chip--impossible.chip--active {
+  opacity: 0.85;
+  background: rgba(160, 50, 50, 0.4);
+  border-color: rgba(220, 90, 90, 0.9);
+}
+
 .check-row {
   display: flex;
   align-items: center;
@@ -140,4 +153,36 @@
 
 .quick-picks {
   margin-top: 4px;
+}
+
+.preset-section__title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.65;
+  margin: 0 0 4px;
+}
+
+.keep-target {
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(61, 186, 106, 0.1);
+  border-left: 3px solid #3dba6a;
+}
+
+.keep-target--skip {
+  background: rgba(200, 80, 80, 0.1);
+  border-left-color: rgba(200, 80, 80, 0.7);
+}
+
+.keep-target__line {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.keep-target__note {
+  margin: 4px 0 0;
+  font-size: 0.74rem;
+  opacity: 0.8;
 }

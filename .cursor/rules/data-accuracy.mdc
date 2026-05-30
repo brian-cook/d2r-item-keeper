@@ -1,0 +1,28 @@
+---
+description: Data accuracy mandate for D2R item data (current to Reign of the Warlock / Patch 3.2 / Season 14)
+alwaysApply: true
+---
+
+# D2R Data Accuracy
+
+Accuracy is the highest priority for this project. All item data in `data/*.json` and any
+in-app notes must be verified and current to the latest expansion (Reign of the Warlock) and
+**Patch 3.2 / Ladder Season 14**. Stale or unverified game facts are bugs.
+
+## Rules
+
+- Verify before writing. Do not state socket counts, runeword recipes, affix caps, item types,
+  or build/meta claims from memory. Confirm against current sources (Blizzard patch notes,
+  diablo2.io, d2runewizard, Arreat Summit, diablowiki) and prefer Patch 3.2 / RotW-specific pages.
+- Never reintroduce known-stale claims. Examples found and fixed previously:
+  - Socket caps are per-base. `max_sockets` must match the real base (e.g. Hyperion Spear 3,
+    Cryptic Sword 4, Thresher 4, Thunder Maul 6). Never group bases with different caps.
+  - Runeword socket counts are fixed: Death = 5 (sword/axe), Faith = 4 (bow), Void/Ritual = 3
+    (dagger, Fanged Knife only), Obsession = 6 (staff), Coven = 3 (helm), Spirit = 4.
+  - Larzuk grants the base's MAX sockets, so a fixed-socket runeword is only guaranteed when the
+    sought count equals `max_sockets`.
+  - Affix availability is item-type-specific (e.g. gloves cap at 20% IAS; attack rating on rings
+    caps at 120 / Platinum; +class-skills and +skill-tree exist only on amulets/circlets/class items).
+
+- When uncertain, research first, then write; if a fact cannot be verified, flag it rather than guess.
+- Keep `season` and `patch` fields in data files set to the current ladder (currently `"14"` / `"3.2"`).

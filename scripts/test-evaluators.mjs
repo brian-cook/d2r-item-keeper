@@ -40,6 +40,24 @@ function evaluateRareRule(values, rule) {
 
 const rare = JSON.parse(readFileSync(join(root, "data/rare_slots.json"), "utf8"));
 const magic = JSON.parse(readFileSync(join(root, "data/magic_presets.json"), "utf8"));
+const bases = JSON.parse(readFileSync(join(root, "data/bases.json"), "utf8"));
+
+const findBase = (id) => bases.bases.find((b) => b.id === id);
+
+// Minimal mirror of evaluateBase socket/Larzuk logic for smoke testing
+function evaluateBaseSockets({ base, sockets, unsocketed }) {
+  const preferred = base.sockets_preferred;
+  const max = base.max_sockets;
+  if (preferred.length === 0) return "CHUCK";
+  if (unsocketed) {
+    if (max !== undefined) return preferred.includes(max) ? "KEEP" : "CHECK";
+    return "CHECK";
+  }
+  if (max !== undefined && sockets > max) return "CHUCK"; // impossible
+  if (preferred.includes(sockets)) return "KEEP";
+  if ((base.sockets_acceptable ?? []).includes(sockets)) return "CHECK";
+  return "CHUCK";
+}
 
 const cases = [
   {
@@ -76,6 +94,78 @@ const cases = [
     name: "Magic preset count",
     run: () => magic.slots.reduce((n, s) => n + s.presets.length, 0),
     expect: (n) => n >= 25,
+  },
+  {
+    name: "Base impossible sockets — CHUCK (Hyperion Spear 4os)",
+    run: () =>
+      evaluateBaseSockets({ base: findBase("hyperion_spear"), sockets: 4, unsocketed: false }),
+    expect: "CHUCK",
+  },
+  {
+    name: "Base Larzuk gives max — KEEP (Thresher unsocketed)",
+    run: () =>
+      evaluateBaseSockets({ base: findBase("thresher"), sockets: null, unsocketed: true }),
+    expect: "KEEP",
+  },
+  {
+    name: "Base Larzuk gives exact — KEEP (Colossus Sword, max 5 = needs 5)",
+    run: () =>
+      evaluateBaseSockets({ base: findBase("colossus_sword"), sockets: null, unsocketed: true }),
+    expect: "KEEP",
+  },
+  {
+    name: "Base Larzuk overshoots — CHECK (Mancatcher max 5, wants 4)",
+    run: () =>
+      evaluateBaseSockets({ base: findBase("mancatcher"), sockets: null, unsocketed: true }),
+    expect: "CHECK",
+  },
+  {
+    name: "Rare ring AR usable — KEEP (leech + AR + str)",
+    run: () =>
+      evaluateRareRule(
+        { ll: 5, ar: 100, str: 20 },
+        rare.slots.ring.rules[1],
+      ),
+    expect: "KEEP",
+  },
+  {
+    name: "Rare jewel + bow + melee slots present (no javelin)",
+    run: () =>
+      Boolean(rare.slots.jewel && rare.slots.bow && rare.slots.melee) &&
+      !rare.slots.weapon,
+    expect: true,
+  },
+  {
+    name: "Rare bow god-roll — KEEP",
+    run: () =>
+      evaluateRareRule({ ed: 250, ias: 20, sockets: 2 }, rare.slots.bow.rules[0]),
+    expect: "KEEP",
+  },
+  {
+    name: "Rare bow mediocre — CHUCK",
+    run: () => evaluateRareRule({ ed: 120, ias: 20 }, rare.slots.bow.rules[0]),
+    expect: null,
+  },
+  {
+    name: "Skill weapon slots present (scepter/orb/wand)",
+    run: () =>
+      Boolean(rare.slots.scepter && rare.slots.orb && rare.slots.wand),
+    expect: true,
+  },
+  {
+    name: "Rare scepter Hammerdin — KEEP",
+    run: () =>
+      evaluateRareRule(
+        { main_skill: 3, pala_skills: 2 },
+        rare.slots.scepter.rules[0],
+      ),
+    expect: "KEEP",
+  },
+  {
+    name: "Rare orb caster — KEEP (20 FCR + +3 skill)",
+    run: () =>
+      evaluateRareRule({ fcr: 20, main_skill: 3 }, rare.slots.orb.rules[0]),
+    expect: "KEEP",
   },
 ];
 

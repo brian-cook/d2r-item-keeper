@@ -8,11 +8,12 @@
       "category": "body_armor",
       "eth_policy": "BOTH",
       "sockets_preferred": [3, 4],
+      "max_sockets": 4,
       "superior_ed_min": 10,
       "superior_ed_ideal": 15,
       "aliases": ["archon"],
-      "notes": "Non-ETH 3s Enigma; non-ETH 4s Fortitude; ETH 4s merc Fortitude. SUP 15% ED raises value dramatically.",
-      "keep_summary": "Superior 10–15% ED with correct socket count."
+      "notes": "Non-ETH 3s Enigma; 4s Fortitude (ETH 4s = merc). Lowest-STR elite armor for Enigma. Superior 15% ED is premium.",
+      "keep_summary": "Superior 10-15% ED with correct socket count."
     },
     {
       "id": "mage_plate",
@@ -20,6 +21,7 @@
       "category": "body_armor",
       "eth_policy": "NORM",
       "sockets_preferred": [3],
+      "max_sockets": 3,
       "superior_ed_min": 10,
       "superior_ed_ideal": 15,
       "aliases": ["mage"],
@@ -32,8 +34,9 @@
       "category": "body_armor",
       "eth_policy": "BOTH",
       "sockets_preferred": [3, 4],
+      "max_sockets": 4,
       "aliases": ["dusk"],
-      "notes": "Non-ETH 3s Enigma alt; ETH 4s Fortitude merc."
+      "notes": "Light elite armor. Non-ETH 3s Enigma; ETH 4s Fortitude merc."
     },
     {
       "id": "wyrmhide",
@@ -41,6 +44,7 @@
       "category": "body_armor",
       "eth_policy": "NORM",
       "sockets_preferred": [3],
+      "max_sockets": 4,
       "notes": "Low STR (84) Enigma alt."
     },
     {
@@ -49,6 +53,7 @@
       "category": "body_armor",
       "eth_policy": "NORM",
       "sockets_preferred": [3],
+      "max_sockets": 4,
       "notes": "Enigma alt, higher STR req."
     },
     {
@@ -57,6 +62,7 @@
       "category": "body_armor",
       "eth_policy": "ETH",
       "sockets_preferred": [4],
+      "max_sockets": 4,
       "superior_ed_min": 10,
       "aliases": ["sacred armor"],
       "notes": "Highest base defense. ETH 4s Fortitude merc. Keep all ETH Superior Sacred Armors."
@@ -67,6 +73,7 @@
       "category": "body_armor",
       "eth_policy": "ETH",
       "sockets_preferred": [4],
+      "max_sockets": 4,
       "notes": "Near-Sacred defense, Fortitude merc alt."
     },
     {
@@ -75,48 +82,18 @@
       "category": "body_armor",
       "eth_policy": "ETH",
       "sockets_preferred": [4],
+      "max_sockets": 4,
       "notes": "High defense Fortitude merc alt."
     },
     {
       "id": "demonhead",
-      "name": "Demonhead",
+      "name": "Demonhead (Shrunken Head)",
       "category": "helmet",
       "eth_policy": "ETH",
       "sockets_preferred": [3],
+      "max_sockets": 3,
       "superior_ed_min": 10,
-      "notes": "ETH 3s Coven or Treachery merc. Superior ETH 3s is premium."
-    },
-    {
-      "id": "vampire_bone_helm",
-      "name": "Vampire Bone Helm",
-      "category": "helmet",
-      "eth_policy": "ETH",
-      "sockets_preferred": [2],
-      "aliases": ["vbh", "vampire helm"]
-    },
-    {
-      "id": "corona",
-      "name": "Corona",
-      "category": "helmet",
-      "eth_policy": "BOTH",
-      "sockets_preferred": [3],
-      "notes": "Flickering Flame base; circlet gambling alt."
-    },
-    {
-      "id": "tiara",
-      "name": "Tiara",
-      "category": "helmet",
-      "eth_policy": "BOTH",
-      "sockets_preferred": [3],
-      "notes": "Low STR caster helm; best circlet gambling base."
-    },
-    {
-      "id": "diadem",
-      "name": "Diadem",
-      "category": "helmet",
-      "eth_policy": "BOTH",
-      "sockets_preferred": [3],
-      "notes": "Low STR caster helm; best circlet gambling base."
+      "notes": "Elite necro shrunken head. ETH 3s Coven (RotW 3s helm) or Dream. Superior ETH 3s is premium."
     },
     {
       "id": "bone_visage",
@@ -124,7 +101,36 @@
       "category": "helmet",
       "eth_policy": "ETH",
       "sockets_preferred": [3],
-      "notes": "ETH 3s Dream merc."
+      "max_sockets": 3,
+      "aliases": ["bv"],
+      "notes": "Elite necro helm. ETH 3s Dream merc."
+    },
+    {
+      "id": "corona",
+      "name": "Corona",
+      "category": "helmet",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [3],
+      "max_sockets": 3,
+      "notes": "Flickering Flame / Dream base; highest-defense circlet-tier helm."
+    },
+    {
+      "id": "tiara",
+      "name": "Tiara",
+      "category": "helmet",
+      "eth_policy": "NORM",
+      "sockets_preferred": [2],
+      "max_sockets": 2,
+      "notes": "Low-STR circlet base; best gambling target for +skills/FCR."
+    },
+    {
+      "id": "diadem",
+      "name": "Diadem",
+      "category": "helmet",
+      "eth_policy": "NORM",
+      "sockets_preferred": [2],
+      "max_sockets": 2,
+      "notes": "Highest-tier circlet; best gambling base for +2 class / +3 tree."
     },
     {
       "id": "great_helm",
@@ -132,15 +138,17 @@
       "category": "helmet",
       "eth_policy": "ETH",
       "sockets_preferred": [2],
-      "notes": "Coven/Lore budget merc option."
+      "max_sockets": 2,
+      "notes": "Lore / budget merc option."
     },
     {
       "id": "armet",
       "name": "Armet",
       "category": "helmet",
       "eth_policy": "ETH",
-      "sockets_preferred": [2],
-      "notes": "Coven/Lore budget merc option."
+      "sockets_preferred": [2, 3],
+      "max_sockets": 3,
+      "notes": "Elite helm; Lore (2s) or budget merc helm."
     },
     {
       "id": "monarch",
@@ -148,16 +156,19 @@
       "category": "shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
-      "flags": ["exact_socket_count", "larzuk_gives_4"],
-      "notes": "Spirit shield base. Keep all non-ETH Monarchs. Larzuk gives 4 if unsocketed."
+      "max_sockets": 4,
+      "flags": ["exact_socket_count"],
+      "notes": "Spirit / Exile / Phoenix base. Lowest STR (156) of the 4-socket elite shields. Larzuk gives 4 (needs ilvl 41+). Keep all non-ETH Monarchs."
     },
     {
-      "id": "hyperion",
-      "name": "Hyperion",
+      "id": "aegis",
+      "name": "Aegis",
       "category": "shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
-      "notes": "Exile/Spirit alternate; higher STR."
+      "max_sockets": 4,
+      "flags": ["exact_socket_count"],
+      "notes": "4-socket elite shield (219 STR). Spirit / Exile / Phoenix alternate to Monarch."
     },
     {
       "id": "ward",
@@ -165,7 +176,9 @@
       "category": "shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
-      "notes": "Highest defense non-Pala shield; Exile, Phoenix alts."
+      "max_sockets": 4,
+      "flags": ["exact_socket_count"],
+      "notes": "Highest-defense non-Paladin 4-socket shield (185 STR). Exile / Phoenix."
     },
     {
       "id": "sacred_targe",
@@ -173,7 +186,8 @@
       "category": "paladin_shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
-      "notes": "75% base block. Preferred for Spirit/Exile/Dream."
+      "max_sockets": 4,
+      "notes": "75% base block. Preferred for Spirit / Exile / Dream."
     },
     {
       "id": "vortex_shield",
@@ -181,6 +195,7 @@
       "category": "paladin_shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
+      "max_sockets": 4,
       "notes": "75% base block; co-equal to Sacred Targe."
     },
     {
@@ -189,6 +204,7 @@
       "category": "paladin_shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
+      "max_sockets": 4,
       "notes": "60% base block; Exile / Conviction builds."
     },
     {
@@ -197,7 +213,8 @@
       "category": "paladin_shield",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
-      "notes": "45% base block; budget — keep if 4 sockets."
+      "max_sockets": 4,
+      "notes": "45% base block; budget - keep if 4 sockets."
     },
     {
       "id": "grimoire_2s",
@@ -205,34 +222,17 @@
       "category": "grimoire",
       "eth_policy": "BOTH",
       "sockets_preferred": [2],
-      "aliases": ["grimoire", "grimoires"],
-      "notes": "Splendor (Eth+Lum) — core Warlock off-hand. Keep all 2-socket Grimoires."
-    },
-    {
-      "id": "grimoire_3s",
-      "name": "Grimoire (any, 3 socket)",
-      "category": "grimoire",
-      "eth_policy": "NORM",
-      "sockets_preferred": [3],
-      "notes": "Future runewords or crafting bases."
+      "aliases": ["grimoire", "grimoires", "book", "tome", "codex"],
+      "notes": "Vigilance (Dol + Gul, RotW 2-socket Shield/Head/Book runeword) - core Warlock off-hand. Keep all 2-socket grimoires."
     },
     {
       "id": "elite_grimoire",
-      "name": "Elite Grimoire",
+      "name": "Elite Grimoire (Occult Tome / Codex / Blasphemous)",
       "category": "grimoire",
       "eth_policy": "BOTH",
       "sockets_preferred": [2, 3],
-      "aliases": ["occult tome", "blasphemous grimoire", "ars tor'baalos"],
-      "notes": "Occult Tome, Blasphemous Grimoire, Ars Tor'Baalos. Highest skill mods."
-    },
-    {
-      "id": "phase_blade",
-      "name": "Phase Blade",
-      "category": "sword",
-      "eth_policy": "NORM",
-      "sockets_preferred": [5],
-      "aliases": ["pb"],
-      "notes": "Grief/Mosaic. Zero durability — ETH gives NO bonus; always NORM."
+      "aliases": ["occult tome", "occult codex", "blasphemous grimoire", "blasphemous compendium", "forgotten volume"],
+      "notes": "Elite-tier RotW books (highest Warlock staffmods). Keep clean 2-3 socket bases for Vigilance or unique re-rolls."
     },
     {
       "id": "crystal_sword",
@@ -240,49 +240,50 @@
       "category": "sword",
       "eth_policy": "NORM",
       "sockets_preferred": [4],
+      "max_sockets": 6,
+      "flags": ["exact_socket_count"],
       "aliases": ["cs"],
-      "notes": "Spirit, Void (3s); or 4s Grief alt."
+      "notes": "Spirit / Call to Arms (4s), lowest-req 4os sword. Needs exactly 4 - farm a 4os (Nightmare cows) since Larzuk gives 6 at high ilvl."
     },
     {
-      "id": "dimensional_blade",
-      "name": "Dimensional Blade",
+      "id": "phase_blade",
+      "name": "Phase Blade",
       "category": "sword",
       "eth_policy": "NORM",
-      "sockets_preferred": [4],
-      "notes": "Grief alternate."
-    },
-    {
-      "id": "legend_sword",
-      "name": "Legend Sword",
-      "category": "sword",
-      "eth_policy": "NORM",
-      "sockets_preferred": [4],
-      "notes": "Grief alt."
+      "sockets_preferred": [5],
+      "sockets_acceptable": [4, 6],
+      "max_sockets": 6,
+      "aliases": ["pb"],
+      "notes": "Grief (5s). Indestructible / cannot be ethereal. 4s = Spirit/CtA, 6s = Last Wish. (Mosaic is claws-only - not Phase Blade.)"
     },
     {
       "id": "colossus_blade",
       "name": "Colossus Blade",
       "category": "sword",
       "eth_policy": "ETH",
-      "sockets_preferred": [6],
-      "notes": "Death runeword (6s). ETH strongly preferred."
+      "sockets_preferred": [5, 6],
+      "max_sockets": 6,
+      "aliases": ["cb"],
+      "notes": "High-damage 2H. ETH 5s Death (natural 5os) or 6s Breath of the Dying (Larzuk gives 6)."
     },
     {
-      "id": "cryptic_sword",
-      "name": "Cryptic Sword",
+      "id": "colossus_sword",
+      "name": "Colossus Sword",
       "category": "sword",
       "eth_policy": "ETH",
-      "sockets_preferred": [6],
-      "notes": "Death runeword."
+      "sockets_preferred": [5],
+      "max_sockets": 5,
+      "notes": "ETH 5s Death - Larzuk gives 5, so easy to socket."
     },
     {
-      "id": "void_sword_bases",
-      "name": "War Sword / Blade / Stiletto",
-      "category": "sword",
-      "eth_policy": "NORM",
-      "sockets_preferred": [3],
-      "aliases": ["war sword", "blade", "stiletto"],
-      "notes": "Void runeword — non-ETH only (debuff stacks break on ETH)."
+      "id": "berserker_axe",
+      "name": "Berserker Axe",
+      "category": "axe",
+      "eth_policy": "ETH",
+      "sockets_preferred": [5, 6],
+      "max_sockets": 6,
+      "aliases": ["zerk", "zerker"],
+      "notes": "Top melee axe base. ETH 5s Grief or Death (natural 5os); 6s Breath of the Dying."
     },
     {
       "id": "glorious_axe",
@@ -290,23 +291,17 @@
       "category": "axe",
       "eth_policy": "ETH",
       "sockets_preferred": [5],
-      "notes": "Death (5s); Gore/Mirror Blade. ETH only."
-    },
-    {
-      "id": "decapitator",
-      "name": "Decapitator",
-      "category": "axe",
-      "eth_policy": "ETH",
-      "sockets_preferred": [5],
-      "notes": "Death alt. ETH only."
+      "max_sockets": 5,
+      "notes": "ETH 5s Death - Larzuk gives 5. Fury Druid / Barb favorite."
     },
     {
       "id": "colossus_axe",
       "name": "Colossus Axe",
       "category": "axe",
       "eth_policy": "ETH",
-      "sockets_preferred": [6],
-      "notes": "Death runeword."
+      "sockets_preferred": [5, 6],
+      "max_sockets": 6,
+      "notes": "ETH 5s Death (natural 5os) or 6s Breath of the Dying."
     },
     {
       "id": "thunder_maul",
@@ -314,18 +309,56 @@
       "category": "maul",
       "eth_policy": "ETH",
       "sockets_preferred": [4, 6],
+      "max_sockets": 6,
       "superior_ed_min": 10,
       "superior_ed_ideal": 15,
       "aliases": ["tm"],
-      "notes": "4s Fortitude weapon; 6s Death. ETH safe for Echoing Strike in 3.2."
+      "notes": "ETH 4s Fortitude weapon; 6s Breath of the Dying (Larzuk gives 6). ETH safe for Echoing Strike in 3.2."
+    },
+    {
+      "id": "ghost_spear",
+      "name": "Ghost Spear",
+      "category": "spear",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4, 6],
+      "max_sockets": 6,
+      "notes": "Elite spear. ETH 4s Infinity merc (needs a natural 4os - Larzuk gives 6); 6s Breath of the Dying."
     },
     {
       "id": "war_pike",
       "name": "War Pike",
-      "category": "maul",
+      "category": "spear",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4, 6],
+      "max_sockets": 6,
+      "notes": "Highest-damage elite spear. ETH 4s Infinity (natural 4os - Larzuk gives 6) or 6s Breath of the Dying."
+    },
+    {
+      "id": "stygian_pike",
+      "name": "Stygian Pike",
+      "category": "spear",
       "eth_policy": "ETH",
       "sockets_preferred": [4],
-      "notes": "Fortitude weapon alt."
+      "max_sockets": 4,
+      "notes": "ETH 4s Infinity merc spear - Larzuk gives 4, so good value and easy to socket."
+    },
+    {
+      "id": "mancatcher",
+      "name": "Mancatcher",
+      "category": "spear",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "max_sockets": 5,
+      "notes": "Fast elite spear. ETH 4s Infinity needs a natural 4os (Larzuk gives 5)."
+    },
+    {
+      "id": "hyperion_spear",
+      "name": "Hyperion Spear",
+      "category": "spear",
+      "eth_policy": "ETH",
+      "sockets_preferred": [],
+      "max_sockets": 3,
+      "notes": "Max 3 sockets - cannot make Infinity/Insight/Pride (need 4) or BotD (need 6). Generally skip."
     },
     {
       "id": "thresher",
@@ -333,7 +366,8 @@
       "category": "polearm",
       "eth_policy": "ETH",
       "sockets_preferred": [4],
-      "notes": "Infinity merc. ETH mandatory for merc."
+      "max_sockets": 4,
+      "notes": "BiS Infinity / Insight / Pride merc polearm - fastest, Larzuk gives 4. ETH mandatory for merc."
     },
     {
       "id": "giant_thresher",
@@ -341,110 +375,104 @@
       "category": "polearm",
       "eth_policy": "ETH",
       "sockets_preferred": [4],
+      "max_sockets": 4,
       "aliases": ["gt"],
-      "notes": "Infinity merc alt; higher damage than Thresher."
+      "notes": "Infinity merc alt - highest-damage fast polearm. Larzuk gives 4."
     },
     {
       "id": "cryptic_axe",
       "name": "Cryptic Axe",
       "category": "polearm",
       "eth_policy": "ETH",
-      "sockets_preferred": [4],
-      "notes": "Infinity / Obedience merc."
+      "sockets_preferred": [4, 5],
+      "max_sockets": 5,
+      "notes": "ETH 4s Insight/Infinity (natural 4os - Larzuk gives 5) or 5s Obedience. Low STR req."
     },
     {
       "id": "great_poleaxe",
       "name": "Great Poleaxe",
       "category": "polearm",
       "eth_policy": "ETH",
-      "sockets_preferred": [4],
-      "notes": "Infinity alt; slower but high damage."
+      "sockets_preferred": [4, 6],
+      "max_sockets": 6,
+      "notes": "High-damage polearm. ETH 4s Infinity needs a natural 4os (Larzuk gives 6); 6s Breath of the Dying."
     },
     {
       "id": "colossus_voulge",
       "name": "Colossus Voulge",
       "category": "polearm",
       "eth_policy": "ETH",
-      "sockets_preferred": [4, 5],
-      "notes": "4s Insight early merc; 5s Obedience."
-    },
-    {
-      "id": "elite_polearm_spear",
-      "name": "Elite Spear / Polearm (any)",
-      "category": "polearm",
-      "eth_policy": "ETH",
-      "sockets_preferred": [4, 5, 6],
-      "aliases": ["polearm", "spear", "elite polearm"],
-      "notes": "Season 14: ALL ETH 4/5/6-socket elite spears and polearms have trading value."
+      "sockets_preferred": [4],
+      "max_sockets": 4,
+      "notes": "ETH 4s Insight / Infinity - Larzuk gives 4 (easiest Infinity base). Slow, high STR."
     },
     {
       "id": "archon_staff",
       "name": "Archon Staff",
       "category": "staff",
-      "eth_policy": "ETH",
+      "eth_policy": "BOTH",
       "sockets_preferred": [6],
-      "notes": "Obsession (6s) — premium Warlock/caster weapon."
+      "max_sockets": 6,
+      "notes": "6s Obsession (premium caster/Warlock 2H). Larzuk gives 6. +3 staffmod base can reach +7 to a skill."
     },
     {
       "id": "rune_staff",
       "name": "Rune Staff",
       "category": "staff",
-      "eth_policy": "ETH",
+      "eth_policy": "BOTH",
       "sockets_preferred": [6],
-      "notes": "Obsession alt."
+      "max_sockets": 6,
+      "notes": "Exceptional staff in the same line - also 6s Obsession base."
     },
     {
-      "id": "elite_staff",
-      "name": "Elite Staff (any)",
-      "category": "staff",
-      "eth_policy": "NORM",
-      "sockets_preferred": [6],
-      "aliases": ["staff"],
-      "notes": "Obsession BiS-tier; keep any 6s elite staff."
-    },
-    {
-      "id": "dagger_void",
-      "name": "Dagger (any)",
+      "id": "fanged_knife",
+      "name": "Fanged Knife",
       "category": "dagger",
       "eth_policy": "NORM",
       "sockets_preferred": [3],
-      "aliases": ["dagger", "stiletto dagger", "legend spike"],
-      "notes": "Void runeword — do NOT use ETH."
+      "max_sockets": 3,
+      "aliases": ["dagger", "fanged"],
+      "notes": "Only elite dagger that reaches 3 sockets (Larzuk gives 3). Void / Ritual (RotW 3s dagger runewords). Keep non-ETH; +Warlock skill mods add value. (Legend Spike maxes at 2 - cannot do these.)"
     },
     {
-      "id": "runic_talon",
-      "name": "Runic Talon",
+      "id": "greater_talons",
+      "name": "Greater Talons",
       "category": "claw",
       "eth_policy": "NORM",
-      "sockets_preferred": [6, 2],
-      "notes": "6s Mosaic; 2s Chaos. Fastest attack speed claw."
+      "sockets_preferred": [3],
+      "max_sockets": 3,
+      "aliases": ["greater talons", "claw", "claws"],
+      "notes": "Fast claw, 3s Mosaic / Chaos. NOTE: Mosaic is DISABLED on the S14 ladder (non-ladder only). Value comes from +3 Phoenix Strike / Claws of Thunder / Dragon Talon."
     },
     {
-      "id": "mosaic_claws",
-      "name": "Greater Talons / Scissors Suwayyah",
+      "id": "runic_talons",
+      "name": "Runic Talons / Scissors Suwayyah",
       "category": "claw",
       "eth_policy": "NORM",
-      "sockets_preferred": [6],
-      "aliases": ["greater talons", "scissors suwayyah", "suwayyah"],
-      "notes": "Mosaic alt."
+      "sockets_preferred": [3],
+      "max_sockets": 3,
+      "aliases": ["runic talon", "runic talons", "scissors suwayyah", "suwayyah"],
+      "notes": "Elite 3s Mosaic / Chaos claw. Mosaic disabled on S14 ladder; non-ladder only."
     },
     {
       "id": "druid_pelt",
       "name": "Druid Pelt",
       "category": "class",
       "eth_policy": "BOTH",
-      "sockets_preferred": [2],
+      "sockets_preferred": [3],
+      "max_sockets": 3,
       "aliases": ["pelt"],
-      "notes": "Spirit/Dream. Keep with open sockets or high +skills."
+      "notes": "Dream (3s) or high +skills. (Spirit is sword/shield only - not pelts.)"
     },
     {
       "id": "necro_head",
-      "name": "Shrunken Head",
+      "name": "Necromancer Shrunken Head",
       "category": "class",
       "eth_policy": "NORM",
       "sockets_preferred": [2],
+      "max_sockets": 3,
       "aliases": ["shrunken head", "necro shield"],
-      "notes": "Rhyme or Splendor. Max 3 sockets — Spirit needs 4."
+      "notes": "Rhyme / Splendor / Vigilance (2s). Max 3 sockets - Spirit needs 4, so not possible here."
     },
     {
       "id": "necro_wand",
@@ -452,26 +480,29 @@
       "category": "class",
       "eth_policy": "NORM",
       "sockets_preferred": [2],
-      "aliases": ["wand"]
+      "max_sockets": 2,
+      "aliases": ["wand"],
+      "notes": "White wand with +3 to a skill (Bone Spear / Bone Armor) for White runeword (Dol Io)."
     },
     {
       "id": "amazon_bow",
-      "name": "Shadow Bow / Crusader Bow",
+      "name": "Grand Matron / Matriarchal / Shadow Bow",
       "category": "class",
       "eth_policy": "BOTH",
-      "sockets_preferred": [6],
-      "aliases": ["shadow bow", "crusader bow", "bow"],
-      "notes": "Faith (6s). ETH for merc bow."
+      "sockets_preferred": [4],
+      "max_sockets": 5,
+      "aliases": ["grand matron bow", "gmb", "matriarchal bow", "shadow bow", "bow"],
+      "notes": "Faith (4s). Needs a natural 4os since Larzuk gives 5. BiS Grand Matron Bow; Matriarchal/Shadow Bow are fast alts. ETH for a merc bow."
     }
   ],
   "catch_all_rules": [
     {
-      "id": "eth_elite_weapon_456",
-      "label": "ETH elite weapon (4/5/6 sockets)",
+      "id": "eth_elite_weapon",
+      "label": "ETH elite weapon - quick check",
       "eth_policy": "ETH",
       "sockets_preferred": [4, 5, 6],
-      "categories": ["polearm", "sword", "axe", "maul", "staff"],
-      "notes": "Quick checklist: any ETH 4/5/6-socket elite weapon."
+      "categories": ["polearm", "spear", "sword", "axe", "maul", "staff"],
+      "notes": "Quick fallback: an ETH elite weapon can be valuable, but the useful socket count depends on the base and runeword (4 = Infinity/Insight/Pride, 5 = Death/Grief/Obedience, 6 = Breath of the Dying). Check the specific base for its max sockets."
     }
   ]
 }

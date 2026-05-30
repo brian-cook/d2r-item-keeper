@@ -10,6 +10,8 @@ export interface ItemBase {
   eth_policy: EthPolicy;
   sockets_preferred: number[];
   sockets_acceptable?: number[];
+  /** Absolute maximum sockets this base can ever roll (ilvl 41+). */
+  max_sockets?: number;
   superior_ed_min?: number;
   superior_ed_ideal?: number;
   flags?: string[];

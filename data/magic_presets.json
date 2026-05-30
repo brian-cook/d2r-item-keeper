@@ -5,7 +5,7 @@
     {
       "id": "amulet",
       "label": "Amulet",
-      "crafting_note": "Any magic amulet works as crafting input. Keep ilvl 90+ from Hell Act 4–5 for max affix pools.",
+      "crafting_note": "Any magic amulet works as a crafting input. Keep ilvl 90+ (Hell Act 4-5 / Diablo / Baal) for the full affix pool when crafting.",
       "stats": [
         { "id": "class_skills", "label": "+Class Skills", "max": 2 },
         { "id": "skill_tree", "label": "+Skill Tree", "max": 3 },
@@ -17,7 +17,7 @@
           "label": "Crafting base (ilvl 90+)",
           "crafting_only": true,
           "verdict": "KEEP",
-          "reason": "Hell A4–5 magic amulet — max affix pool for crafted amulets."
+          "reason": "Hell A4-5 / boss magic amulet - max affix pool for crafted (Caster/Blood) amulets."
         },
         {
           "id": "class_fcr",
@@ -27,14 +27,17 @@
             { "stat": "fcr", "op": ">=", "value": 10 }
           ],
           "verdict": "KEEP",
-          "reason": "Strong rolled amulet; also a gamble target."
+          "reason": "+2 class (prefix) + 10% FCR (suffix) - legal magic combo and a top gamble target."
         },
         {
-          "id": "skill_tree_3",
-          "label": "+3 Skill Tree",
-          "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
+          "id": "skill_tree_fcr",
+          "label": "+3 Skill Tree + 10% FCR",
+          "requirements": [
+            { "stat": "skill_tree", "op": ">=", "value": 3 },
+            { "stat": "fcr", "op": ">=", "value": 10 }
+          ],
           "verdict": "KEEP",
-          "reason": "Crafting component when ilvl is correct."
+          "reason": "+3 skill tab (prefix) + FCR (suffix) - excellent caster amulet."
         }
       ]
     },
@@ -42,102 +45,82 @@
       "id": "gloves",
       "label": "Gloves",
       "stats": [
-        { "id": "ll", "label": "Life Leech %", "max": 3 },
-        { "id": "ias", "label": "IAS %", "max": 30 },
-        { "id": "fbr", "label": "FBR %", "max": 30 },
-        { "id": "jav_skills", "label": "+Jav Skills", "max": 3 },
-        { "id": "bow_skills", "label": "+Bow Skills", "max": 3 }
+        { "id": "ias", "label": "IAS %", "max": 20 },
+        { "id": "jav_skills", "label": "+Jav/Spear Skills", "max": 3 },
+        { "id": "bow_skills", "label": "+Bow Skills", "max": 3 },
+        { "id": "ma_skills", "label": "+Martial Arts Skills", "max": 3 },
+        { "id": "passive_skills", "label": "+Passive/Magic Skills", "max": 3 }
       ],
       "presets": [
         {
-          "id": "3ll_20ias",
-          "label": "3% LL + 20% IAS",
-          "requirements": [
-            { "stat": "ll", "op": ">=", "value": 3 },
-            { "stat": "ias", "op": ">=", "value": 20 }
-          ],
-          "verdict": "KEEP",
-          "reason": "BiS Barb melee switch (3/20 gloves) — magic only."
-        },
-        {
           "id": "jav_20ias",
-          "label": "+3 Jav + 20% IAS",
+          "label": "+3 Jav/Spear + 20% IAS (Lancer's)",
           "requirements": [
             { "stat": "jav_skills", "op": ">=", "value": 3 },
             { "stat": "ias", "op": ">=", "value": 20 }
           ],
           "verdict": "KEEP",
-          "reason": "BiS Javazon magic gloves."
+          "reason": "BiS Javazon gloves - +3 skill tab (prefix) + 20% IAS (suffix)."
         },
         {
           "id": "bow_20ias",
-          "label": "+3 Bow + 20% IAS",
+          "label": "+3 Bow + 20% IAS (Archer's)",
           "requirements": [
             { "stat": "bow_skills", "op": ">=", "value": 3 },
             { "stat": "ias", "op": ">=", "value": 20 }
           ],
           "verdict": "KEEP",
-          "reason": "Bowazon alt gloves."
+          "reason": "BiS Bowazon gloves."
         },
         {
-          "id": "30ias",
-          "label": "30% IAS",
-          "requirements": [{ "stat": "ias", "op": ">=", "value": 30 }],
-          "verdict": "KEEP",
-          "reason": "Magic-only IAS cap (rares max 20%)."
-        },
-        {
-          "id": "smiter_template",
-          "label": "3% LL + 20% IAS + 30% FBR",
+          "id": "ma_20ias",
+          "label": "+3 Martial Arts + 20% IAS (Kenshi's)",
           "requirements": [
-            { "stat": "ll", "op": ">=", "value": 3 },
-            { "stat": "ias", "op": ">=", "value": 20 },
-            { "stat": "fbr", "op": ">=", "value": 30 }
+            { "stat": "ma_skills", "op": ">=", "value": 3 },
+            { "stat": "ias", "op": ">=", "value": 20 }
           ],
           "verdict": "KEEP",
-          "reason": "Smiter / hybrid Paladin BiS crafting template."
+          "reason": "BiS Martial-Arts Assassin gloves; very high demand."
+        },
+        {
+          "id": "passive_20ias",
+          "label": "+3 Passive / +20% IAS",
+          "requirements": [
+            { "stat": "passive_skills", "op": ">=", "value": 3 },
+            { "stat": "ias", "op": ">=", "value": 20 }
+          ],
+          "verdict": "KEEP",
+          "reason": "Zon passive / niche skill-tab gloves with 20% IAS."
         }
+      ],
+      "notes": [
+        "Gloves cap at 20% IAS (of Alacrity) in BOTH magic and rare - 30% is not possible.",
+        "Crushing Blow / Open Wounds gloves are CRAFTED (Blood Gloves), not magic or rare. Faster Block Rate does not roll on gloves."
       ]
     },
     {
       "id": "boots",
       "label": "Boots",
       "stats": [
-        { "id": "frw", "label": "FRW %", "max": 40 },
-        { "id": "fhr", "label": "FHR %", "max": 10 },
-        { "id": "fire_res", "label": "Fire Res %", "max": 40 },
-        { "id": "cold_res", "label": "Cold Res %", "max": 40 },
-        { "id": "light_res", "label": "Light Res %", "max": 40 }
+        { "id": "frw", "label": "FRW %", "max": 40 }
       ],
       "presets": [
         {
-          "id": "40frw_fhr_res",
-          "label": "40% FRW + 10% FHR + resist",
-          "requirements": [
-            { "stat": "frw", "op": ">=", "value": 40 },
-            { "stat": "fhr", "op": ">=", "value": 10 }
-          ],
-          "optional_any": [{ "stat": "fire_res", "min": 1 }, { "stat": "cold_res", "min": 1 }, { "stat": "light_res", "min": 1 }],
+          "id": "accel_40frw",
+          "label": "40% FRW (of Acceleration)",
+          "requirements": [{ "stat": "frw", "op": ">=", "value": 40 }],
           "verdict": "KEEP",
-          "reason": "Endgame craft base or direct use."
-        },
-        {
-          "id": "30frw_trires",
-          "label": "30% FRW + tri-res",
-          "requirements": [{ "stat": "frw", "op": ">=", "value": 30 }],
-          "min_res_count": 3,
-          "res_stats": ["fire_res", "cold_res", "light_res"],
-          "verdict": "CHECK",
-          "reason": "Usable for many builds; also blood/safety craft input."
+          "reason": "40% FRW is MAGIC-ONLY (of Acceleration); rare boots cap at 30%. Top movement boots / craft base."
         },
         {
           "id": "craft_input",
           "label": "Crafting input (any magic boot)",
           "crafting_only": true,
           "verdict": "CHECK",
-          "reason": "Cube blood/safety boots need a magic base; higher FRW carries over."
+          "reason": "Cube Blood/Safety boots need a magic base; higher FRW carries useful potential."
         }
-      ]
+      ],
+      "notes": ["FRW + FHR + tri-res boots are RARE (multiple affixes), not magic - check those under the Rare tab."]
     },
     {
       "id": "circlet",
@@ -154,7 +137,7 @@
           "label": "+3 Skill Tree",
           "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
           "verdict": "KEEP",
-          "reason": "BiS for many builds (+3 Fire Sorc, +3 Warcries Barb, etc.)."
+          "reason": "BiS for many builds (+3 Fire Sorc, +3 Warcries Barb, etc.); circlet magic level lets it roll high."
         },
         {
           "id": "class_fcr_20",
@@ -164,17 +147,17 @@
             { "stat": "fcr", "op": ">=", "value": 20 }
           ],
           "verdict": "KEEP",
-          "reason": "Strong player headgear; Warlock demand very high in S14."
+          "reason": "+2 class (prefix) + 20% FCR (suffix) - premium caster headgear; Warlock demand very high in S14."
         },
         {
           "id": "sockets_class",
-          "label": "1–2 sockets + +2 Class",
+          "label": "1-2 sockets + +2 Class",
           "requirements": [
             { "stat": "sockets", "op": ">=", "value": 1 },
             { "stat": "class_skills", "op": ">=", "value": 2 }
           ],
           "verdict": "KEEP",
-          "reason": "Larzuk for extra sockets on strong skill base."
+          "reason": "Sockets roll independently of affixes - Larzuk/socket on a strong +skills base."
         }
       ]
     },
@@ -182,51 +165,51 @@
       "id": "shield",
       "label": "Shield",
       "stats": [
-        { "id": "all_res", "label": "All Res %", "max": 40 },
+        { "id": "all_res", "label": "All Res %", "max": 45 },
         { "id": "sockets", "label": "Sockets", "max": 2 },
         { "id": "is_pala", "label": "Paladin shield", "type": "bool" }
       ],
       "presets": [
         {
           "id": "prismatic_monarch",
-          "label": "Monarch 40% All Res (Prismatic)",
+          "label": "Monarch 40%+ All Res (Prismatic)",
           "requirements": [{ "stat": "all_res", "op": ">=", "value": 40 }],
           "verdict": "KEEP",
-          "reason": "Best magic caster shield while farming 4s Spirit Monarch — transitional."
+          "reason": "Prismatic (all-res prefix) caster shield while farming a white 4s Spirit Monarch - transitional."
         },
         {
           "id": "pala_40res_2s",
-          "label": "Pala shield 40% AR + 2 sockets",
+          "label": "Pala shield 40%+ AR + 2 sockets",
           "requirements": [
             { "stat": "all_res", "op": ">=", "value": 40 },
             { "stat": "sockets", "op": ">=", "value": 2 },
             { "stat": "is_pala", "op": "==", "value": 1 }
           ],
           "verdict": "KEEP",
-          "reason": "Budget Paladin shield until white 4s Sacred Targe / Vortex."
+          "reason": "Budget Paladin shield until a white 4s Sacred Targe / Vortex Shield."
         }
       ],
-      "notes": ["Cannot use magic shields for runewords — white bases only for Spirit/Exile."]
+      "notes": ["Magic shields cannot host runewords - only white bases work for Spirit/Exile/Phoenix."]
     },
     {
       "id": "druid_pelt",
       "label": "Druid Pelt",
       "stats": [
-        { "id": "druid_skills", "label": "+Druid Skills", "max": 2 },
+        { "id": "druid_skills", "label": "+Druid Class Skills", "max": 2 },
         { "id": "skill_tree", "label": "+Skill Tree (single)", "max": 3 },
         { "id": "fcr", "label": "FCR %", "max": 20 },
-        { "id": "sockets", "label": "Sockets", "max": 2 }
+        { "id": "sockets", "label": "Sockets", "max": 3 }
       ],
       "presets": [
         {
           "id": "shapeshift_3_2s",
-          "label": "+3 Shape-shift + 2 sockets",
+          "label": "+3 Shape-shifting + 2 sockets",
           "requirements": [
             { "stat": "skill_tree", "op": ">=", "value": 3 },
             { "stat": "sockets", "op": ">=", "value": 2 }
           ],
           "verdict": "KEEP",
-          "reason": "BiS Werebear / Werewolf helm."
+          "reason": "BiS Werebear / Werewolf pelt."
         },
         {
           "id": "elemental_fcr",
@@ -236,24 +219,27 @@
             { "stat": "fcr", "op": ">=", "value": 1 }
           ],
           "verdict": "KEEP",
-          "reason": "Elemental Druid caster helm."
+          "reason": "Elemental Druid caster pelt (+3 tab prefix + FCR suffix)."
         },
         {
           "id": "druid_fcr_stats",
-          "label": "+2 Druid + 20% FCR + stats",
+          "label": "+2 Druid + 20% FCR",
           "requirements": [
             { "stat": "druid_skills", "op": ">=", "value": 2 },
             { "stat": "fcr", "op": ">=", "value": 20 }
           ],
           "verdict": "KEEP",
-          "reason": "Strong all-around Druid helm."
+          "reason": "Strong all-around Druid pelt."
         }
       ]
     },
     {
       "id": "barb_helm",
       "label": "Barbarian Helm",
-      "stats": [{ "id": "skill_tree", "label": "+Skill Tree", "max": 3 }, { "id": "sockets", "label": "Sockets", "max": 2 }],
+      "stats": [
+        { "id": "skill_tree", "label": "+Skill Tree", "max": 3 },
+        { "id": "sockets", "label": "Sockets", "max": 2 }
+      ],
       "presets": [
         {
           "id": "warcries_3_2s",
@@ -279,7 +265,7 @@
       "label": "Necro Shrunken Head",
       "stats": [
         { "id": "skill_tree", "label": "+Skill Tree", "max": 3 },
-        { "id": "sockets", "label": "Sockets", "max": 2 }
+        { "id": "sockets", "label": "Sockets", "max": 3 }
       ],
       "presets": [
         {
@@ -287,7 +273,7 @@
           "label": "+3 Bone / Summon / P&B",
           "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
           "verdict": "KEEP",
-          "reason": "BiS Necro offhand skill head."
+          "reason": "BiS Necro off-hand skill head."
         },
         {
           "id": "2s_skills",
@@ -297,42 +283,35 @@
             { "stat": "skill_tree", "op": ">=", "value": 2 }
           ],
           "verdict": "KEEP",
-          "reason": "Rhyme or Splendor budget off-hand (max 3 sockets on heads)."
+          "reason": "Rhyme / Splendor / Vigilance budget off-hand (max 3 sockets on heads)."
         }
       ]
     },
     {
       "id": "sorc_orb",
       "label": "Sorceress Orb",
-      "stats": [{ "id": "skill_tree", "label": "+Skill Tree", "max": 3 }],
+      "stats": [{ "id": "skill_tree", "label": "+Skill (orb staffmod)", "max": 3 }],
       "presets": [
         {
           "id": "fire_3",
-          "label": "+3 Fire Skills",
+          "label": "+3 Fire skill",
           "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
           "verdict": "KEEP",
-          "reason": "Fire Sorc melee switch."
+          "reason": "Fire Sorc melee/CtA switch (orb staffmod)."
         },
         {
           "id": "lightning_3",
-          "label": "+3 Lightning Skills",
+          "label": "+3 Lightning skill",
           "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
           "verdict": "KEEP",
           "reason": "Lightning / Nova Sorc switch."
         },
         {
           "id": "cold_3",
-          "label": "+3 Cold Skills",
+          "label": "+3 Cold skill",
           "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
           "verdict": "CHECK",
           "reason": "Pre-Fathom budget cold switch."
-        },
-        {
-          "id": "elemental_3",
-          "label": "+3 Elemental Skills",
-          "requirements": [{ "stat": "skill_tree", "op": ">=", "value": 3 }],
-          "verdict": "KEEP",
-          "reason": "Universal Sorc orb."
         }
       ]
     },
@@ -340,7 +319,7 @@
       "id": "dagger",
       "label": "Dagger (Warlock mods)",
       "stats": [
-        { "id": "warlock_skill", "label": "+Warlock Skill", "max": 3 },
+        { "id": "warlock_skill", "label": "+Warlock Skill (staffmod)", "max": 3 },
         { "id": "warlock_tree", "label": "+Warlock Tree", "max": 3 }
       ],
       "presets": [
@@ -349,7 +328,7 @@
           "label": "+3 Warlock main skill",
           "requirements": [{ "stat": "warlock_skill", "op": ">=", "value": 3 }],
           "verdict": "KEEP",
-          "reason": "Near-BiS Warlock off-hand or weapon."
+          "reason": "Near-BiS Warlock weapon (white daggers gained Warlock staffmods in RotW)."
         },
         {
           "id": "warlock_tree_3",
@@ -359,7 +338,7 @@
           "reason": "High demand for Abyss / Echoing Strike builds."
         }
       ],
-      "notes": ["Void runeword uses white daggers — keep magic daggers for skill mods only."]
+      "notes": ["Void / Ritual runewords use white 3-socket daggers (Fanged Knife) - keep magic daggers for skill mods."]
     },
     {
       "id": "grimoire",
@@ -394,14 +373,105 @@
         },
         {
           "id": "2s_strong",
-          "label": "2 sockets + strong skills",
-          "requirements": [
-            { "stat": "sockets", "op": ">=", "value": 2 }
-          ],
+          "label": "2 sockets (Vigilance base)",
+          "requirements": [{ "stat": "sockets", "op": ">=", "value": 2 }],
           "verdict": "CHECK",
-          "reason": "Transitional off-hand — Splendor needs white base."
+          "reason": "Transitional off-hand - white 2s grimoire makes Vigilance."
         }
       ]
+    },
+    {
+      "id": "jewel",
+      "label": "Jewel",
+      "stats": [
+        { "id": "ias", "label": "IAS %", "max": 15 },
+        { "id": "ed", "label": "Enhanced Damage %", "max": 40 },
+        { "id": "all_res", "label": "All Res %", "max": 15 },
+        { "id": "max_dmg", "label": "+Max Damage", "max": 15 }
+      ],
+      "presets": [
+        {
+          "id": "ias_ed",
+          "label": "15% IAS + high ED",
+          "requirements": [
+            { "stat": "ias", "op": ">=", "value": 15 },
+            { "stat": "ed", "op": ">=", "value": 30 }
+          ],
+          "verdict": "KEEP",
+          "reason": "Top jewel - 15 IAS (suffix) + 30-40% ED (prefix). 15/40 is near-perfect."
+        },
+        {
+          "id": "ias_res",
+          "label": "15% IAS + all res",
+          "requirements": [
+            { "stat": "ias", "op": ">=", "value": 15 },
+            { "stat": "all_res", "op": ">=", "value": 8 }
+          ],
+          "verdict": "KEEP",
+          "reason": "15 IAS + resist jewel - excellent for socketed armor/weapons."
+        },
+        {
+          "id": "ed_max",
+          "label": "40% ED + max damage",
+          "requirements": [
+            { "stat": "ed", "op": ">=", "value": 40 },
+            { "stat": "max_dmg", "op": ">=", "value": 9 }
+          ],
+          "verdict": "KEEP",
+          "reason": "Perfect ED + max damage jewel for melee/bow."
+        },
+        {
+          "id": "all_res_15",
+          "label": "15 all res",
+          "requirements": [{ "stat": "all_res", "op": ">=", "value": 15 }],
+          "verdict": "KEEP",
+          "reason": "15 all-res jewel - rare and valuable for any socketed gear."
+        }
+      ],
+      "notes": ["Rainbow Facets are UNIQUE jewels (-5% enemy res / +5% skill damage by element) - always keep; tracked as uniques, not magic rolls."]
+    },
+    {
+      "id": "charm",
+      "label": "Charm (Grand / Small)",
+      "stats": [
+        { "id": "skill_tab", "label": "+1 Skill Tab (Grand)", "max": 1 },
+        { "id": "life", "label": "Life", "max": 45 },
+        { "id": "all_res", "label": "All Res % (Small: Shimmering)", "max": 5 },
+        { "id": "mf", "label": "MF % (Small)", "max": 7 },
+        { "id": "frw", "label": "FRW % (Small)", "max": 7 }
+      ],
+      "presets": [
+        {
+          "id": "skiller",
+          "label": "Skiller Grand Charm (+1 tab)",
+          "requirements": [{ "stat": "skill_tab", "op": ">=", "value": 1 }],
+          "verdict": "KEEP",
+          "reason": "+1 to a skill tab grand charm - universally valuable (Sorc/Pala/Warlock highest)."
+        },
+        {
+          "id": "skiller_life",
+          "label": "Skiller + 35-45 Life",
+          "requirements": [
+            { "stat": "skill_tab", "op": ">=", "value": 1 },
+            { "stat": "life", "op": ">=", "value": 35 }
+          ],
+          "verdict": "KEEP",
+          "reason": "Skiller with high life (needs high ilvl - Hell Diablo/Baal/Nihlathak). Premium."
+        },
+        {
+          "id": "sc_life_res",
+          "label": "Small Charm: 20 Life or res/MF/FRW",
+          "requirements": [{ "stat": "life", "op": ">=", "value": 20 }],
+          "optional_any": [
+            { "stat": "all_res", "min": 5 },
+            { "stat": "mf", "min": 7 },
+            { "stat": "frw", "min": 7 }
+          ],
+          "verdict": "KEEP",
+          "reason": "20-life small charm (of Vita), ideally with a useful prefix (all-res / 7% MF / 7% FRW)."
+        }
+      ],
+      "notes": ["Charms can only be MAGIC (never rare). Grand = skillers; Small = life/res/MF/FRW; Large charms are rarely worth the space."]
     }
   ]
 }

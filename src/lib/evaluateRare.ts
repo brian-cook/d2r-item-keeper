@@ -133,6 +133,62 @@ export function evaluateRareAllVariants(
   return best;
 }
 
+export interface RareTarget {
+  id: string;
+  label: string;
+  rule: RareRule;
+}
+
+/** The keep "targets" for a slot: its build variants, or its rules. */
+export function listRareTargets(slot: RareSlot): RareTarget[] {
+  if (slot.variants?.length) {
+    return slot.variants.map((v) => ({ id: v.id, label: v.label, rule: v.rule }));
+  }
+  return (slot.rules ?? []).map((r, i) => ({
+    id: r.id ?? `rule-${i}`,
+    label: r.label ?? `Target ${i + 1}`,
+    rule: r,
+  }));
+}
+
+/** Build a human-readable description of what a given rule/target looks for. */
+export function describeRareRule(
+  rule: RareRule,
+  statLabels: Record<string, string>,
+  label?: string,
+): EvaluationResult {
+  const name = (id: string) => statLabels[id] ?? id;
+  const fmt = (c: { stat: string; op: string; value: number }) => {
+    if (c.op === "==" && c.value === 1) return name(c.stat);
+    if (c.op === ">=") return `${name(c.stat)} ${c.value}+`;
+    return `${name(c.stat)} ${c.op} ${c.value}`;
+  };
+
+  const reasons: string[] = [];
+  if (label) reasons.push(label);
+
+  const clauses: string[] = [];
+  const core = (rule.core ?? []).map(fmt);
+  if (core.length) clauses.push(core.join(" + "));
+  if (rule.any_skill_tree_min) clauses.push(`+${rule.any_skill_tree_min} to a skill tree`);
+  if ((rule.secondary_min_count ?? 0) > 0 && rule.secondaries?.length) {
+    clauses.push(
+      `${rule.secondary_min_count} of: ${rule.secondaries.map(fmt).join(", ")}`,
+    );
+  }
+  if (rule.res_min_count && rule.res_min_value !== undefined) {
+    clauses.push(`${rule.res_min_count} resists ${rule.res_min_value}%+`);
+  }
+  if (rule.combined_res_min) {
+    clauses.push(`combined res ${rule.combined_res_min}%+`);
+  }
+  if (clauses.length) reasons.push(`Looking for: ${clauses.join("; ")}`);
+  if (rule.note) reasons.push(rule.note);
+  if (reasons.length === (label ? 1 : 0)) reasons.push("Keep target.");
+
+  return { verdict: rule.verdict, reasons };
+}
+
 export function getRareSlot(
   slots: Record<string, RareSlot>,
   id: string,

@@ -35,10 +35,30 @@ export function evaluateBase(input: BaseEvaluationInput): EvaluationResult {
     verdict = "CHUCK";
   }
 
-  if (unsocketed) {
-    if (base.flags?.includes("larzuk_gives_4")) {
-      reasons.push("Unsocketed OK — Larzuk quest gives 4 sockets on this base.");
-      verdict = worstVerdict(verdict, "KEEP");
+  const preferred = base.sockets_preferred;
+  const maxSockets = base.max_sockets;
+
+  if (preferred.length === 0) {
+    reasons.push(
+      maxSockets !== undefined
+        ? `This base (max ${maxSockets} sockets) has no sought socket count — generally not worth keeping.`
+        : "This base has no sought socket count — generally not worth keeping.",
+    );
+    verdict = worstVerdict(verdict, "CHUCK");
+  } else if (unsocketed) {
+    if (maxSockets !== undefined) {
+      if (preferred.includes(maxSockets)) {
+        reasons.push(
+          `Unsocketed OK — Larzuk gives this base's max (${maxSockets}), exactly a sought count.`,
+        );
+        verdict = worstVerdict(verdict, "KEEP");
+      } else {
+        const sought = preferred.join("/");
+        reasons.push(
+          `Unsocketed risky — Larzuk gives the max (${maxSockets}), but you want ${sought}. You need a natural ${sought}-socket drop.`,
+        );
+        verdict = worstVerdict(verdict, "CHECK");
+      }
     } else {
       reasons.push("Unsocketed — verify socket count after Larzuk or socket quest.");
       verdict = worstVerdict(verdict, "CHECK");
@@ -46,8 +66,12 @@ export function evaluateBase(input: BaseEvaluationInput): EvaluationResult {
   } else if (sockets === null) {
     reasons.push("Pick a socket count (or mark unsocketed).");
     verdict = worstVerdict(verdict, "CHECK");
+  } else if (maxSockets !== undefined && sockets > maxSockets) {
+    reasons.push(
+      `Impossible: ${sockets} sockets — this base can have at most ${maxSockets}.`,
+    );
+    verdict = "CHUCK";
   } else {
-    const preferred = base.sockets_preferred;
     const acceptable = base.sockets_acceptable ?? [];
     const exactOnly = base.flags?.includes("exact_socket_count");
 
