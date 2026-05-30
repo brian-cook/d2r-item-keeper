@@ -59,3 +59,27 @@ Update `bases.json` when the season guide changes.
 - `data/` — item rules
 
 See `ARCHITECTURE.md` for full design notes.
+
+## Publish to GitHub
+
+GitHub CLI is installed at `C:\Program Files\GitHub CLI\gh.exe`. If `gh` is not recognized, **close and reopen your terminal** (or use the helper scripts below).
+
+**1. Log in (one time):**
+
+```powershell
+cd c:\Users\wiggl\Documents\Python\D2-items
+powershell -ExecutionPolicy Bypass -File scripts/gh.ps1 auth login
+```
+
+**2. Create repo and push:**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/publish-github.ps1
+```
+
+Or with full path (no restart needed):
+
+```powershell
+& "C:\Program Files\GitHub CLI\gh.exe" auth login
+& "C:\Program Files\GitHub CLI\gh.exe" repo create d2r-item-keeper --public --source=. --remote=origin --push
+```
