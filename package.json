@@ -3,11 +3,34 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "description": "Desktop overlay for Diablo II: Resurrected to quickly decide if a dropped base, magic, or rare item is worth keeping (Season 14 / Patch 3.2 data).",
+  "license": "MIT",
+  "author": "brian-cook",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brian-cook/d2r-item-keeper.git"
+  },
+  "homepage": "https://github.com/brian-cook/d2r-item-keeper#readme",
+  "bugs": {
+    "url": "https://github.com/brian-cook/d2r-item-keeper/issues"
+  },
+  "keywords": [
+    "diablo-2",
+    "diablo-2-resurrected",
+    "d2r",
+    "tauri",
+    "overlay",
+    "gaming"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite",
     "dev:web": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "node scripts/test-evaluators.mjs",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",

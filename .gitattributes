@@ -1,0 +1,31 @@
+# Normalize line endings: store as LF in the repo, check out native on each OS.
+* text=auto eol=lf
+
+# Windows-only scripts must stay CRLF so they run correctly on Windows.
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
+# Cross-platform shell scripts stay LF.
+*.sh    text eol=lf
+
+# Explicit text types
+*.ts    text
+*.tsx   text
+*.js    text
+*.mjs   text
+*.json  text
+*.md    text
+*.html  text
+*.css   text
+*.toml  text
+*.rs    text
+
+# Binary assets — never normalize or diff.
+*.png   binary
+*.ico   binary
+*.icns  binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary

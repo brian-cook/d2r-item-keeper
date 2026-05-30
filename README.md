@@ -1,85 +1,94 @@
 # D2R Item Keeper
 
-Desktop overlay for **Diablo 2: Resurrected** — quickly decide if a drop is a base worth keeping (Season 14 / Patch 3.2 data).
+A lightweight desktop overlay for **Diablo II: Resurrected** that helps you decide, in a few seconds, whether a dropped item is worth keeping — a **base** for a runeword, or a **magic/rare** with high-value affixes. Built with Tauri + React for **Season 14 / Patch 3.2** data.
+
+> Unofficial fan tool. Not affiliated with Blizzard Entertainment. Item data is community-sourced and may go stale between patches.
+
+## Features
+
+- **Base** tab — search a white base, set ethereal/sockets/superior, get a **KEEP / CHECK / CHUCK** verdict with the reason and runeword note.
+- **Magic** tab — pick a slot, tap a known best-in-slot preset, or enter affix rolls for an automatic match.
+- **Rare** tab — pick a slot (and build variant for gloves/belts), enter affix values, and compare against Season 14 keep rules with a max-rolls reference.
+- **Overlay window** — frameless, semi-transparent, always-on-top, draggable; sits over the game (use borderless windowed mode).
 
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) 20+
-- [Rust](https://www.rust-lang.org/tools/install) (for Tauri)
-- Windows: [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) (usually preinstalled on Windows 11)
+- [Rust](https://www.rust-lang.org/tools/install) (toolchain for Tauri; provides `cargo`)
+- Windows: [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) (preinstalled on Windows 11)
 
-## Run the app (terminal)
+> The overlay currently targets Windows. The web UI (`npm run dev:web`) runs anywhere.
 
-```powershell
-cd c:\Users\wiggl\Documents\Python\D2-items
+## Getting started
+
+```bash
+git clone https://github.com/brian-cook/d2r-item-keeper.git
+cd d2r-item-keeper
 npm install
 npm run tauri:dev
 ```
 
-Install [Rust](https://www.rust-lang.org/tools/install) if `cargo` is not found, then restart your terminal.
+The first `tauri:dev` run compiles Rust dependencies and may take a few minutes. If `cargo` is not found, install Rust and restart your terminal.
 
-**UI only in browser** (no overlay — layout testing):
+### UI only in the browser
 
-```powershell
+For quick layout/logic work without building the native window:
+
+```bash
 npm run dev:web
 ```
 
-Open http://localhost:1420
-## Build installer / exe
+Then open <http://localhost:1420>.
 
-```powershell
+## Build a release
+
+```bash
 npm run tauri:build
 ```
 
-Output under `src-tauri/target/release/bundle/`.
+Installers/executables are emitted under `src-tauri/target/release/bundle/`.
 
-## Overlay usage
+## Tests
 
-- Window is **frameless**, **always on top**, and **semi-transparent** — drag via the title bar.
-- **Pin (📌)** toggles **stay on top** only — you can still drag the window. Pinned = above normal windows; unpinned (📍) = can go behind other apps. Does not work over D2R in **exclusive fullscreen** (use borderless windowed).
-- **—** minimizes; **×** closes.
-- **Base** tab: search a white base, set eth/sockets, read **KEEP / CHECK / CHUCK**.
-- Shortcuts: `/` focus search, `3`–`6` socket count, `E` cycle eth.
+Smoke tests for the keep/chuck evaluators:
 
-**Magic** tab: pick slot, tap a known BiS preset, or enter affix values for auto-match.
+```bash
+npm test
+```
 
-**Rare** tab: pick slot (and build variant for gloves/belts), enter affix values, see KEEP/CHECK/CHUCK vs S14 rules.
+## Usage
 
-## Data
-
-- Source markdown: `data/D2R_Items_To_Keep_Season14.md`
-- Structured rules: `data/bases.json`
-
-Update `bases.json` when the season guide changes.
+- Drag the window by the title bar. **Pin (📌)** toggles stay-on-top; **—** minimizes; **×** closes.
+- Stay-on-top works over D2R in **borderless windowed** mode, not exclusive fullscreen.
+- Keyboard shortcuts (Base tab): `/` focus search, `3`–`6` socket count, `E` cycle ethereal.
 
 ## Project layout
 
-- `src/` — React UI
-- `src-tauri/` — Tauri overlay window
-- `data/` — item rules
+| Path | Purpose |
+|------|---------|
+| `src/` | React UI (components, evaluators in `src/lib/`) |
+| `src-tauri/` | Tauri overlay window (Rust + config) |
+| `data/` | Item rules: `bases.json`, `magic_presets.json`, `rare_slots.json` |
+| `data/D2R_Items_To_Keep_Season14.md` | Source guide the rules are derived from |
+| `scripts/` | Helper scripts (tests, optional desktop shortcut, GitHub CLI) |
+| `ARCHITECTURE.md` | Full design notes and data model |
 
-See `ARCHITECTURE.md` for full design notes.
+## Updating for a new season
 
-## Publish to GitHub
+1. Replace `data/D2R_Items_To_Keep_Season14.md` with the new guide.
+2. Update the JSON in `data/` to match (bases, magic presets, rare slots).
+3. Bump the `season`/`patch` fields and the badge in the UI.
 
-GitHub CLI is installed at `C:\Program Files\GitHub CLI\gh.exe`. If `gh` is not recognized, **close and reopen your terminal** (or use the helper scripts below).
+## Optional: desktop shortcut (Windows)
 
-**1. Log in (one time):**
-
-```powershell
-cd c:\Users\wiggl\Documents\Python\D2-items
-powershell -ExecutionPolicy Bypass -File scripts/gh.ps1 auth login
-```
-
-**2. Create repo and push:**
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/publish-github.ps1
-```
-
-Or with full path (no restart needed):
+If you prefer launching without a terminal, build once and create a shortcut:
 
 ```powershell
-& "C:\Program Files\GitHub CLI\gh.exe" auth login
-& "C:\Program Files\GitHub CLI\gh.exe" repo create d2r-item-keeper --public --source=. --remote=origin --push
+npm run desktop:install
 ```
+
+This builds the release binary and adds a **D2R Item Keeper** shortcut to your desktop. For everyday use, the terminal command above is the simplest path.
+
+## License
+
+[MIT](LICENSE)
