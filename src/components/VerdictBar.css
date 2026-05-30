@@ -1,0 +1,49 @@
+.verdict {
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.verdict--idle {
+  background: rgba(30, 30, 40, 0.85);
+}
+
+.verdict--keep {
+  background: rgba(20, 80, 40, 0.9);
+  border-color: #3dba6a;
+}
+
+.verdict--check {
+  background: rgba(100, 70, 10, 0.9);
+  border-color: #d4a017;
+}
+
+.verdict--chuck {
+  background: rgba(60, 30, 30, 0.85);
+  border-color: #8a4545;
+}
+
+.verdict__label {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.verdict__hint {
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.verdict__reasons {
+  margin: 6px 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.verdict__reasons li + li {
+  margin-top: 4px;
+}

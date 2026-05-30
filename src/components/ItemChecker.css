@@ -1,0 +1,150 @@
+.item-checker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.field__label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.field__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f0e6d0;
+  font-size: 0.95rem;
+}
+
+.field__input:focus {
+  outline: 2px solid #c9a24d;
+  outline-offset: 1px;
+}
+
+.field__input--narrow {
+  width: 100%;
+  max-width: 5rem;
+}
+
+.slot-select {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f0e6d0;
+  font-size: 0.9rem;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 162, 77, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+  color: #f0e6d0;
+  cursor: pointer;
+  font-size: 0.75rem;
+  text-align: left;
+}
+
+.chip:hover {
+  border-color: #e8c872;
+}
+
+.chip--active {
+  background: rgba(201, 162, 77, 0.35);
+  border-color: #e8c872;
+}
+
+.chip--preset-keep {
+  border-color: #3dba6a;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  margin: 4px 0;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat-field__max {
+  opacity: 0.55;
+  text-transform: none;
+  font-weight: normal;
+}
+
+.slot-notes {
+  font-size: 0.72rem;
+  opacity: 0.75;
+  margin: 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.slot-notes li {
+  margin-left: 1rem;
+}
+
+.preset-section__title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin: 8px 0 4px;
+}
+
+.max-rolls {
+  font-size: 0.72rem;
+  margin-top: 4px;
+}
+
+.max-rolls summary {
+  cursor: pointer;
+  opacity: 0.75;
+  user-select: none;
+}
+
+.max-rolls__list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+}
+
+.max-rolls__list li {
+  display: contents;
+}
+
+.max-rolls__list span:last-child {
+  opacity: 0.85;
+  text-align: right;
+}

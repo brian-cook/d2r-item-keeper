@@ -1,0 +1,143 @@
+.base-checker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.field__label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.field__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  background: rgba(0, 0, 0, 0.35);
+  color: #f0e6d0;
+  font-size: 0.95rem;
+}
+
+.field__input:focus {
+  outline: 2px solid #c9a24d;
+  outline-offset: 1px;
+}
+
+.field__input--narrow {
+  width: 4.5rem;
+  flex: 0 0 auto;
+}
+
+.base-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid rgba(201, 162, 77, 0.25);
+  border-radius: 6px;
+  background: rgba(10, 8, 6, 0.95);
+}
+
+.base-list__item {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.base-list__item:hover {
+  background: rgba(201, 162, 77, 0.12);
+}
+
+.base-list__name {
+  display: block;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.base-list__meta {
+  font-size: 0.68rem;
+  opacity: 0.65;
+}
+
+.base-detail {
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border-left: 3px solid #c9a24d;
+}
+
+.base-detail__cat {
+  margin-left: 8px;
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.base-detail__policy {
+  margin: 4px 0 0;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.socket-row .chip {
+  min-width: 2rem;
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(201, 162, 77, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+  color: #f0e6d0;
+  cursor: pointer;
+  font-size: 0.82rem;
+}
+
+.chip:hover:not(:disabled) {
+  border-color: #e8c872;
+}
+
+.chip--active {
+  background: rgba(201, 162, 77, 0.35);
+  border-color: #e8c872;
+}
+
+.chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+}
+
+.quick-picks {
+  margin-top: 4px;
+}

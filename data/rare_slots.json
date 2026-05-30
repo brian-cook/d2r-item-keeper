@@ -1,0 +1,471 @@
+{
+  "season": "14",
+  "patch": "3.2",
+  "slots": {
+    "amulet": {
+      "label": "Rare Amulet",
+      "max_rolls": {
+        "class_skills": 2,
+        "fcr": 10,
+        "life": 40,
+        "mana": 40,
+        "str": 15,
+        "dex": 15,
+        "all_res": 10,
+        "single_res": 40,
+        "mf": 10
+      },
+      "stats": [
+        { "id": "class_skills", "label": "+Class Skills", "max": 2 },
+        { "id": "fcr", "label": "FCR %", "max": 10 },
+        { "id": "life", "label": "Life", "max": 40 },
+        { "id": "mana", "label": "Mana", "max": 40 },
+        { "id": "str", "label": "Strength", "max": 15 },
+        { "id": "dex", "label": "Dexterity", "max": 15 },
+        { "id": "all_res", "label": "All Res %", "max": 10 },
+        { "id": "single_res", "label": "Single Res %", "max": 40 }
+      ],
+      "rules": [
+        {
+          "id": "caster_core",
+          "label": "Caster core",
+          "verdict": "KEEP",
+          "core": [
+            { "stat": "class_skills", "op": ">=", "value": 2 },
+            { "stat": "fcr", "op": ">=", "value": 10 }
+          ],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "life", "op": ">=", "value": 30 },
+            { "stat": "mana", "op": ">=", "value": 25 },
+            { "stat": "str", "op": ">=", "value": 10 },
+            { "stat": "dex", "op": ">=", "value": 10 },
+            { "stat": "all_res", "op": ">=", "value": 8 },
+            { "stat": "single_res", "op": ">=", "value": 30 }
+          ]
+        },
+        {
+          "id": "no_fcr",
+          "label": "No FCR fallback",
+          "verdict": "CHECK",
+          "core": [{ "stat": "class_skills", "op": ">=", "value": 2 }],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "life", "op": ">=", "value": 35 },
+            { "stat": "single_res", "op": ">=", "value": 30 },
+            { "stat": "all_res", "op": ">=", "value": 8 }
+          ],
+          "note": "Class skills + high life + resist without FCR."
+        }
+      ]
+    },
+    "circlet": {
+      "label": "Circlet / Tiara / Diadem",
+      "max_rolls": {
+        "class_skills": 2,
+        "fcr": 20,
+        "frw": 30,
+        "life": 70,
+        "mana": 70,
+        "str": 30,
+        "dex": 30,
+        "all_res": 10,
+        "single_res": 40,
+        "sockets": 2
+      },
+      "stats": [
+        { "id": "class_skills", "label": "+Class Skills", "max": 2 },
+        { "id": "fcr", "label": "FCR %", "max": 20 },
+        { "id": "life", "label": "Life", "max": 70 },
+        { "id": "mana", "label": "Mana", "max": 70 },
+        { "id": "str", "label": "Strength", "max": 30 },
+        { "id": "dex", "label": "Dexterity", "max": 30 },
+        { "id": "all_res", "label": "All Res %", "max": 10 },
+        { "id": "single_res", "label": "Single Res %", "max": 40 },
+        { "id": "sockets", "label": "Sockets", "max": 2 }
+      ],
+      "rules": [
+        {
+          "id": "fcr_core",
+          "label": "+2 class + 20% FCR",
+          "verdict": "KEEP",
+          "core": [
+            { "stat": "class_skills", "op": ">=", "value": 2 },
+            { "stat": "fcr", "op": ">=", "value": 20 }
+          ],
+          "secondary_min_count": 0,
+          "secondaries": [
+            { "stat": "life", "op": ">=", "value": 40 },
+            { "stat": "mana", "op": ">=", "value": 40 },
+            { "stat": "str", "op": ">=", "value": 10 },
+            { "stat": "dex", "op": ">=", "value": 10 },
+            { "stat": "sockets", "op": ">=", "value": 1 },
+            { "stat": "all_res", "op": ">=", "value": 8 }
+          ],
+          "note": "Core combo alone is high value; secondaries are bonus."
+        }
+      ]
+    },
+    "gloves": {
+      "label": "Rare Gloves",
+      "max_rolls": { "ias": 20, "cb": 20, "ow": 35, "ll": 7, "ml": 7, "str": 15, "dex": 15 },
+      "stats": [
+        { "id": "ias", "label": "IAS %", "max": 20 },
+        { "id": "jav_skills", "label": "+Jav Skills", "max": 2 },
+        { "id": "bow_skills", "label": "+Bow Skills", "max": 2 },
+        { "id": "warlock_skills", "label": "+Warlock Skills", "max": 2 },
+        { "id": "cb", "label": "Crushing Blow %", "max": 20 },
+        { "id": "ow", "label": "Open Wounds %", "max": 35 },
+        { "id": "ll", "label": "Life Leech %", "max": 7 },
+        { "id": "ml", "label": "Mana Leech %", "max": 7 },
+        { "id": "str", "label": "Strength", "max": 15 },
+        { "id": "dex", "label": "Dexterity", "max": 15 },
+        { "id": "life", "label": "Life", "max": 20 },
+        { "id": "single_res", "label": "Single Res %", "max": 40 }
+      ],
+      "variants": [
+        {
+          "id": "jav",
+          "label": "Javazon",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [
+              { "stat": "jav_skills", "op": ">=", "value": 2 },
+              { "stat": "ias", "op": ">=", "value": 20 }
+            ],
+            "secondary_min_count": 1,
+            "secondaries": [
+              { "stat": "dex", "op": ">=", "value": 10 },
+              { "stat": "life", "op": ">=", "value": 10 },
+              { "stat": "single_res", "op": ">=", "value": 15 }
+            ]
+          }
+        },
+        {
+          "id": "bow",
+          "label": "Bowazon",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [
+              { "stat": "bow_skills", "op": ">=", "value": 2 },
+              { "stat": "ias", "op": ">=", "value": 20 }
+            ],
+            "secondary_min_count": 1,
+            "secondaries": [
+              { "stat": "dex", "op": ">=", "value": 10 },
+              { "stat": "life", "op": ">=", "value": 10 },
+              { "stat": "single_res", "op": ">=", "value": 15 }
+            ]
+          }
+        },
+        {
+          "id": "smiter",
+          "label": "Smiter",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [{ "stat": "ias", "op": ">=", "value": 20 }],
+            "secondary_min_count": 2,
+            "secondaries": [
+              { "stat": "cb", "op": ">=", "value": 10 },
+              { "stat": "ow", "op": ">=", "value": 15 },
+              { "stat": "life", "op": ">=", "value": 10 }
+            ]
+          }
+        },
+        {
+          "id": "barb",
+          "label": "Barb melee",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [{ "stat": "ias", "op": ">=", "value": 20 }],
+            "secondary_min_count": 2,
+            "secondaries": [
+              { "stat": "ll", "op": ">=", "value": 5 },
+              { "stat": "ml", "op": ">=", "value": 3 },
+              { "stat": "str", "op": ">=", "value": 10 }
+            ]
+          }
+        },
+        {
+          "id": "warlock",
+          "label": "Warlock",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [
+              { "stat": "ias", "op": ">=", "value": 20 },
+              { "stat": "warlock_skills", "op": ">=", "value": 1 }
+            ],
+            "secondary_min_count": 0,
+            "secondaries": []
+          }
+        }
+      ]
+    },
+    "boots": {
+      "label": "Rare Boots",
+      "max_rolls": {
+        "frw": 30,
+        "fhr": 10,
+        "fire_res": 40,
+        "cold_res": 40,
+        "light_res": 40,
+        "poison_res": 40,
+        "life": 30
+      },
+      "stats": [
+        { "id": "frw", "label": "FRW %", "max": 30 },
+        { "id": "fhr", "label": "FHR %", "max": 10 },
+        { "id": "fire_res", "label": "Fire Res %", "max": 40 },
+        { "id": "cold_res", "label": "Cold Res %", "max": 40 },
+        { "id": "light_res", "label": "Light Res %", "max": 40 },
+        { "id": "poison_res", "label": "Poison Res %", "max": 40 },
+        { "id": "life", "label": "Life", "max": 30 }
+      ],
+      "rules": [
+        {
+          "id": "frw_trires",
+          "label": "30% FRW + resists",
+          "verdict": "KEEP",
+          "core": [{ "stat": "frw", "op": ">=", "value": 30 }],
+          "res_min_count": 2,
+          "res_min_value": 20,
+          "res_stats": ["fire_res", "cold_res", "light_res", "poison_res"],
+          "note": "Ideal: tri-res 30–40% each + 10% FHR."
+        },
+        {
+          "id": "high_res_no_frw",
+          "label": "High res without FRW",
+          "verdict": "CHECK",
+          "core": [],
+          "combined_res_min": 90,
+          "res_stats": ["fire_res", "cold_res", "light_res"],
+          "note": "Needs ~90%+ combined fire/cold/light without FRW."
+        }
+      ]
+    },
+    "belt": {
+      "label": "Rare Belt",
+      "max_rolls": { "fhr": 24, "str": 30, "life": 60, "mana": 40, "gf": 80 },
+      "stats": [
+        { "id": "fhr", "label": "FHR %", "max": 24 },
+        { "id": "str", "label": "Strength", "max": 30 },
+        { "id": "life", "label": "Life", "max": 60 },
+        { "id": "mana", "label": "Mana", "max": 40 },
+        { "id": "gf", "label": "Gold Find %", "max": 80 },
+        { "id": "single_res", "label": "Single Res %", "max": 40 },
+        { "id": "all_res", "label": "All Res %", "max": 10 }
+      ],
+      "variants": [
+        {
+          "id": "sorc",
+          "label": "Sorceress",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [
+              { "stat": "fhr", "op": ">=", "value": 15 },
+              { "stat": "str", "op": ">=", "value": 20 }
+            ],
+            "secondary_min_count": 1,
+            "secondaries": [
+              { "stat": "mana", "op": ">=", "value": 25 },
+              { "stat": "single_res", "op": ">=", "value": 20 },
+              { "stat": "all_res", "op": ">=", "value": 8 }
+            ]
+          }
+        },
+        {
+          "id": "gf",
+          "label": "Gold Find Barb",
+          "rule": {
+            "verdict": "KEEP",
+            "core": [
+              { "stat": "fhr", "op": ">=", "value": 15 },
+              { "stat": "gf", "op": ">=", "value": 50 }
+            ],
+            "secondary_min_count": 1,
+            "secondaries": [
+              { "stat": "str", "op": ">=", "value": 20 },
+              { "stat": "life", "op": ">=", "value": 30 }
+            ]
+          }
+        }
+      ]
+    },
+    "ring": {
+      "label": "Rare Ring",
+      "max_rolls": {
+        "fcr": 10,
+        "ll": 7,
+        "ml": 7,
+        "str": 20,
+        "dex": 20,
+        "life": 30,
+        "mana": 30,
+        "ar": 150,
+        "single_res": 40,
+        "all_res": 10
+      },
+      "stats": [
+        { "id": "fcr", "label": "FCR %", "max": 10 },
+        { "id": "ll", "label": "Life Leech %", "max": 7 },
+        { "id": "ml", "label": "Mana Leech %", "max": 7 },
+        { "id": "str", "label": "Strength", "max": 20 },
+        { "id": "dex", "label": "Dexterity", "max": 20 },
+        { "id": "life", "label": "Life", "max": 30 },
+        { "id": "mana", "label": "Mana", "max": 30 },
+        { "id": "single_res", "label": "Single Res %", "max": 40 },
+        { "id": "all_res", "label": "All Res %", "max": 10 }
+      ],
+      "rules": [
+        {
+          "id": "fcr_melee",
+          "label": "FCR + leech + stats",
+          "verdict": "KEEP",
+          "core": [{ "stat": "fcr", "op": ">=", "value": 10 }],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "ll", "op": ">=", "value": 5 },
+            { "stat": "ml", "op": ">=", "value": 3 },
+            { "stat": "str", "op": ">=", "value": 10 },
+            { "stat": "dex", "op": ">=", "value": 10 },
+            { "stat": "life", "op": ">=", "value": 20 },
+            { "stat": "mana", "op": ">=", "value": 20 }
+          ]
+        },
+        {
+          "id": "double_leech",
+          "label": "Double leech (no FCR)",
+          "verdict": "CHECK",
+          "core": [
+            { "stat": "ll", "op": ">=", "value": 5 },
+            { "stat": "ml", "op": ">=", "value": 5 }
+          ],
+          "secondary_min_count": 1,
+          "secondaries": [{ "stat": "str", "op": ">=", "value": 15 }],
+          "note": "Melee ring without FCR — still valuable."
+        }
+      ]
+    },
+    "helmet": {
+      "label": "Rare Helm (non-circlet)",
+      "max_rolls": { "class_skills": 2, "ll": 10, "ml": 10, "sockets": 2 },
+      "stats": [
+        { "id": "class_skills", "label": "+Class Skills", "max": 2 },
+        { "id": "ll", "label": "Life Leech %", "max": 10 },
+        { "id": "ml", "label": "Mana Leech %", "max": 10 },
+        { "id": "sockets", "label": "Sockets", "max": 2 },
+        { "id": "eth", "label": "Ethereal", "type": "bool" }
+      ],
+      "rules": [
+        {
+          "id": "merc_leech",
+          "label": "Merc double leech",
+          "verdict": "KEEP",
+          "core": [
+            { "stat": "eth", "op": "==", "value": 1 },
+            { "stat": "sockets", "op": ">=", "value": 2 },
+            { "stat": "ll", "op": ">=", "value": 5 }
+          ],
+          "secondary_min_count": 1,
+          "secondaries": [{ "stat": "ml", "op": ">=", "value": 5 }],
+          "note": "ETH 2s + double leech merc alt."
+        },
+        {
+          "id": "player_class",
+          "label": "Player +2 class",
+          "verdict": "KEEP",
+          "core": [{ "stat": "class_skills", "op": ">=", "value": 2 }],
+          "secondary_min_count": 0,
+          "secondaries": [],
+          "note": "Barb rare Armet, etc."
+        }
+      ]
+    },
+    "shield": {
+      "label": "Rare Shield",
+      "max_rolls": { "all_res": 40, "pdr": 20, "sockets": 2 },
+      "stats": [
+        { "id": "sockets", "label": "Sockets", "max": 2 },
+        { "id": "all_res", "label": "All Res %", "max": 40 },
+        { "id": "fire_res", "label": "Fire Res %", "max": 40 },
+        { "id": "cold_res", "label": "Cold Res %", "max": 40 },
+        { "id": "light_res", "label": "Light Res %", "max": 40 },
+        { "id": "pdr", "label": "PDR %", "max": 20 }
+      ],
+      "rules": [
+        {
+          "id": "socket_res",
+          "label": "2s + resists + PDR",
+          "verdict": "KEEP",
+          "core": [{ "stat": "sockets", "op": ">=", "value": 2 }],
+          "secondary_min_count": 2,
+          "secondaries": [
+            { "stat": "all_res", "op": ">=", "value": 10 },
+            { "stat": "pdr", "op": ">=", "value": 10 },
+            { "stat": "fire_res", "op": ">=", "value": 25 },
+            { "stat": "cold_res", "op": ">=", "value": 25 },
+            { "stat": "light_res", "op": ">=", "value": 25 }
+          ],
+          "note": "Rare Monarch with resists is viable."
+        }
+      ]
+    },
+    "grimoire": {
+      "label": "Rare Grimoire",
+      "max_rolls": {
+        "demon_binding": 3,
+        "demon_skills": 3,
+        "chaos_skills": 3,
+        "fcr": 20,
+        "all_res": 10
+      },
+      "stats": [
+        { "id": "demon_binding", "label": "+Demon Binding", "max": 3 },
+        { "id": "demon_skills", "label": "+Demon Skills", "max": 3 },
+        { "id": "chaos_skills", "label": "+Chaos Skills", "max": 3 },
+        { "id": "eldritch_skills", "label": "+Eldritch Skills", "max": 3 },
+        { "id": "fcr", "label": "FCR %", "max": 20 },
+        { "id": "all_res", "label": "All Res %", "max": 10 },
+        { "id": "life", "label": "Life", "max": 60 },
+        { "id": "mana", "label": "Mana", "max": 60 }
+      ],
+      "rules": [
+        {
+          "id": "demon_binding",
+          "label": "+3 Demon Binding",
+          "verdict": "KEEP",
+          "core": [{ "stat": "demon_binding", "op": ">=", "value": 3 }],
+          "secondary_min_count": 0,
+          "secondaries": []
+        },
+        {
+          "id": "tree_fcr",
+          "label": "+3 skill tree + FCR",
+          "verdict": "KEEP",
+          "core": [
+            { "stat": "fcr", "op": ">=", "value": 10 }
+          ],
+          "any_skill_tree_min": 3,
+          "skill_tree_stats": ["demon_skills", "chaos_skills", "eldritch_skills"],
+          "secondary_min_count": 0,
+          "secondaries": []
+        },
+        {
+          "id": "partial",
+          "label": "Partial (+2 tree)",
+          "verdict": "CHECK",
+          "core": [],
+          "any_skill_tree_min": 2,
+          "skill_tree_stats": ["demon_skills", "chaos_skills", "eldritch_skills"],
+          "secondary_min_count": 1,
+          "secondaries": [
+            { "stat": "fcr", "op": ">=", "value": 10 },
+            { "stat": "life", "op": ">=", "value": 25 },
+            { "stat": "mana", "op": ">=", "value": 25 }
+          ],
+          "note": "Trade value in S14 even if not full BiS."
+        }
+      ]
+    }
+  }
+}

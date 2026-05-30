@@ -1,0 +1,477 @@
+{
+  "season": "14",
+  "patch": "3.2",
+  "bases": [
+    {
+      "id": "archon_plate",
+      "name": "Archon Plate",
+      "category": "body_armor",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [3, 4],
+      "superior_ed_min": 10,
+      "superior_ed_ideal": 15,
+      "aliases": ["archon"],
+      "notes": "Non-ETH 3s Enigma; non-ETH 4s Fortitude; ETH 4s merc Fortitude. SUP 15% ED raises value dramatically.",
+      "keep_summary": "Superior 10–15% ED with correct socket count."
+    },
+    {
+      "id": "mage_plate",
+      "name": "Mage Plate",
+      "category": "body_armor",
+      "eth_policy": "NORM",
+      "sockets_preferred": [3],
+      "superior_ed_min": 10,
+      "superior_ed_ideal": 15,
+      "aliases": ["mage"],
+      "notes": "Lowest STR req (55) for Enigma.",
+      "keep_summary": "Non-ETH 3s Enigma; SUP 15% ED significant."
+    },
+    {
+      "id": "dusk_shroud",
+      "name": "Dusk Shroud",
+      "category": "body_armor",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [3, 4],
+      "aliases": ["dusk"],
+      "notes": "Non-ETH 3s Enigma alt; ETH 4s Fortitude merc."
+    },
+    {
+      "id": "wyrmhide",
+      "name": "Wyrmhide",
+      "category": "body_armor",
+      "eth_policy": "NORM",
+      "sockets_preferred": [3],
+      "notes": "Low STR (84) Enigma alt."
+    },
+    {
+      "id": "scarab_husk",
+      "name": "Scarab Husk",
+      "category": "body_armor",
+      "eth_policy": "NORM",
+      "sockets_preferred": [3],
+      "notes": "Enigma alt, higher STR req."
+    },
+    {
+      "id": "sacred_armor",
+      "name": "Sacred Armor",
+      "category": "body_armor",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "superior_ed_min": 10,
+      "aliases": ["sacred armor"],
+      "notes": "Highest base defense. ETH 4s Fortitude merc. Keep all ETH Superior Sacred Armors."
+    },
+    {
+      "id": "shadow_plate",
+      "name": "Shadow Plate",
+      "category": "body_armor",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "notes": "Near-Sacred defense, Fortitude merc alt."
+    },
+    {
+      "id": "loricated_mail",
+      "name": "Loricated Mail",
+      "category": "body_armor",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "notes": "High defense Fortitude merc alt."
+    },
+    {
+      "id": "demonhead",
+      "name": "Demonhead",
+      "category": "helmet",
+      "eth_policy": "ETH",
+      "sockets_preferred": [3],
+      "superior_ed_min": 10,
+      "notes": "ETH 3s Coven or Treachery merc. Superior ETH 3s is premium."
+    },
+    {
+      "id": "vampire_bone_helm",
+      "name": "Vampire Bone Helm",
+      "category": "helmet",
+      "eth_policy": "ETH",
+      "sockets_preferred": [2],
+      "aliases": ["vbh", "vampire helm"]
+    },
+    {
+      "id": "corona",
+      "name": "Corona",
+      "category": "helmet",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [3],
+      "notes": "Flickering Flame base; circlet gambling alt."
+    },
+    {
+      "id": "tiara",
+      "name": "Tiara",
+      "category": "helmet",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [3],
+      "notes": "Low STR caster helm; best circlet gambling base."
+    },
+    {
+      "id": "diadem",
+      "name": "Diadem",
+      "category": "helmet",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [3],
+      "notes": "Low STR caster helm; best circlet gambling base."
+    },
+    {
+      "id": "bone_visage",
+      "name": "Bone Visage",
+      "category": "helmet",
+      "eth_policy": "ETH",
+      "sockets_preferred": [3],
+      "notes": "ETH 3s Dream merc."
+    },
+    {
+      "id": "great_helm",
+      "name": "Great Helm",
+      "category": "helmet",
+      "eth_policy": "ETH",
+      "sockets_preferred": [2],
+      "notes": "Coven/Lore budget merc option."
+    },
+    {
+      "id": "armet",
+      "name": "Armet",
+      "category": "helmet",
+      "eth_policy": "ETH",
+      "sockets_preferred": [2],
+      "notes": "Coven/Lore budget merc option."
+    },
+    {
+      "id": "monarch",
+      "name": "Monarch",
+      "category": "shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "flags": ["exact_socket_count", "larzuk_gives_4"],
+      "notes": "Spirit shield base. Keep all non-ETH Monarchs. Larzuk gives 4 if unsocketed."
+    },
+    {
+      "id": "hyperion",
+      "name": "Hyperion",
+      "category": "shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "Exile/Spirit alternate; higher STR."
+    },
+    {
+      "id": "ward",
+      "name": "Ward",
+      "category": "shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "Highest defense non-Pala shield; Exile, Phoenix alts."
+    },
+    {
+      "id": "sacred_targe",
+      "name": "Sacred Targe",
+      "category": "paladin_shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "75% base block. Preferred for Spirit/Exile/Dream."
+    },
+    {
+      "id": "vortex_shield",
+      "name": "Vortex Shield",
+      "category": "paladin_shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "75% base block; co-equal to Sacred Targe."
+    },
+    {
+      "id": "zakarum_shield",
+      "name": "Zakarum Shield",
+      "category": "paladin_shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "60% base block; Exile / Conviction builds."
+    },
+    {
+      "id": "kurast_shield",
+      "name": "Kurast Shield",
+      "category": "paladin_shield",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "45% base block; budget — keep if 4 sockets."
+    },
+    {
+      "id": "grimoire_2s",
+      "name": "Grimoire (any, 2 socket)",
+      "category": "grimoire",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [2],
+      "aliases": ["grimoire", "grimoires"],
+      "notes": "Splendor (Eth+Lum) — core Warlock off-hand. Keep all 2-socket Grimoires."
+    },
+    {
+      "id": "grimoire_3s",
+      "name": "Grimoire (any, 3 socket)",
+      "category": "grimoire",
+      "eth_policy": "NORM",
+      "sockets_preferred": [3],
+      "notes": "Future runewords or crafting bases."
+    },
+    {
+      "id": "elite_grimoire",
+      "name": "Elite Grimoire",
+      "category": "grimoire",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [2, 3],
+      "aliases": ["occult tome", "blasphemous grimoire", "ars tor'baalos"],
+      "notes": "Occult Tome, Blasphemous Grimoire, Ars Tor'Baalos. Highest skill mods."
+    },
+    {
+      "id": "phase_blade",
+      "name": "Phase Blade",
+      "category": "sword",
+      "eth_policy": "NORM",
+      "sockets_preferred": [5],
+      "aliases": ["pb"],
+      "notes": "Grief/Mosaic. Zero durability — ETH gives NO bonus; always NORM."
+    },
+    {
+      "id": "crystal_sword",
+      "name": "Crystal Sword",
+      "category": "sword",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "aliases": ["cs"],
+      "notes": "Spirit, Void (3s); or 4s Grief alt."
+    },
+    {
+      "id": "dimensional_blade",
+      "name": "Dimensional Blade",
+      "category": "sword",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "Grief alternate."
+    },
+    {
+      "id": "legend_sword",
+      "name": "Legend Sword",
+      "category": "sword",
+      "eth_policy": "NORM",
+      "sockets_preferred": [4],
+      "notes": "Grief alt."
+    },
+    {
+      "id": "colossus_blade",
+      "name": "Colossus Blade",
+      "category": "sword",
+      "eth_policy": "ETH",
+      "sockets_preferred": [6],
+      "notes": "Death runeword (6s). ETH strongly preferred."
+    },
+    {
+      "id": "cryptic_sword",
+      "name": "Cryptic Sword",
+      "category": "sword",
+      "eth_policy": "ETH",
+      "sockets_preferred": [6],
+      "notes": "Death runeword."
+    },
+    {
+      "id": "void_sword_bases",
+      "name": "War Sword / Blade / Stiletto",
+      "category": "sword",
+      "eth_policy": "NORM",
+      "sockets_preferred": [3],
+      "aliases": ["war sword", "blade", "stiletto"],
+      "notes": "Void runeword — non-ETH only (debuff stacks break on ETH)."
+    },
+    {
+      "id": "glorious_axe",
+      "name": "Glorious Axe",
+      "category": "axe",
+      "eth_policy": "ETH",
+      "sockets_preferred": [5],
+      "notes": "Death (5s); Gore/Mirror Blade. ETH only."
+    },
+    {
+      "id": "decapitator",
+      "name": "Decapitator",
+      "category": "axe",
+      "eth_policy": "ETH",
+      "sockets_preferred": [5],
+      "notes": "Death alt. ETH only."
+    },
+    {
+      "id": "colossus_axe",
+      "name": "Colossus Axe",
+      "category": "axe",
+      "eth_policy": "ETH",
+      "sockets_preferred": [6],
+      "notes": "Death runeword."
+    },
+    {
+      "id": "thunder_maul",
+      "name": "Thunder Maul",
+      "category": "maul",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4, 6],
+      "superior_ed_min": 10,
+      "superior_ed_ideal": 15,
+      "aliases": ["tm"],
+      "notes": "4s Fortitude weapon; 6s Death. ETH safe for Echoing Strike in 3.2."
+    },
+    {
+      "id": "war_pike",
+      "name": "War Pike",
+      "category": "maul",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "notes": "Fortitude weapon alt."
+    },
+    {
+      "id": "thresher",
+      "name": "Thresher",
+      "category": "polearm",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "notes": "Infinity merc. ETH mandatory for merc."
+    },
+    {
+      "id": "giant_thresher",
+      "name": "Giant Thresher",
+      "category": "polearm",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "aliases": ["gt"],
+      "notes": "Infinity merc alt; higher damage than Thresher."
+    },
+    {
+      "id": "cryptic_axe",
+      "name": "Cryptic Axe",
+      "category": "polearm",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "notes": "Infinity / Obedience merc."
+    },
+    {
+      "id": "great_poleaxe",
+      "name": "Great Poleaxe",
+      "category": "polearm",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4],
+      "notes": "Infinity alt; slower but high damage."
+    },
+    {
+      "id": "colossus_voulge",
+      "name": "Colossus Voulge",
+      "category": "polearm",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4, 5],
+      "notes": "4s Insight early merc; 5s Obedience."
+    },
+    {
+      "id": "elite_polearm_spear",
+      "name": "Elite Spear / Polearm (any)",
+      "category": "polearm",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4, 5, 6],
+      "aliases": ["polearm", "spear", "elite polearm"],
+      "notes": "Season 14: ALL ETH 4/5/6-socket elite spears and polearms have trading value."
+    },
+    {
+      "id": "archon_staff",
+      "name": "Archon Staff",
+      "category": "staff",
+      "eth_policy": "ETH",
+      "sockets_preferred": [6],
+      "notes": "Obsession (6s) — premium Warlock/caster weapon."
+    },
+    {
+      "id": "rune_staff",
+      "name": "Rune Staff",
+      "category": "staff",
+      "eth_policy": "ETH",
+      "sockets_preferred": [6],
+      "notes": "Obsession alt."
+    },
+    {
+      "id": "elite_staff",
+      "name": "Elite Staff (any)",
+      "category": "staff",
+      "eth_policy": "NORM",
+      "sockets_preferred": [6],
+      "aliases": ["staff"],
+      "notes": "Obsession BiS-tier; keep any 6s elite staff."
+    },
+    {
+      "id": "dagger_void",
+      "name": "Dagger (any)",
+      "category": "dagger",
+      "eth_policy": "NORM",
+      "sockets_preferred": [3],
+      "aliases": ["dagger", "stiletto dagger", "legend spike"],
+      "notes": "Void runeword — do NOT use ETH."
+    },
+    {
+      "id": "runic_talon",
+      "name": "Runic Talon",
+      "category": "claw",
+      "eth_policy": "NORM",
+      "sockets_preferred": [6, 2],
+      "notes": "6s Mosaic; 2s Chaos. Fastest attack speed claw."
+    },
+    {
+      "id": "mosaic_claws",
+      "name": "Greater Talons / Scissors Suwayyah",
+      "category": "claw",
+      "eth_policy": "NORM",
+      "sockets_preferred": [6],
+      "aliases": ["greater talons", "scissors suwayyah", "suwayyah"],
+      "notes": "Mosaic alt."
+    },
+    {
+      "id": "druid_pelt",
+      "name": "Druid Pelt",
+      "category": "class",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [2],
+      "aliases": ["pelt"],
+      "notes": "Spirit/Dream. Keep with open sockets or high +skills."
+    },
+    {
+      "id": "necro_head",
+      "name": "Shrunken Head",
+      "category": "class",
+      "eth_policy": "NORM",
+      "sockets_preferred": [2],
+      "aliases": ["shrunken head", "necro shield"],
+      "notes": "Rhyme or Splendor. Max 3 sockets — Spirit needs 4."
+    },
+    {
+      "id": "necro_wand",
+      "name": "Necromancer Wand",
+      "category": "class",
+      "eth_policy": "NORM",
+      "sockets_preferred": [2],
+      "aliases": ["wand"]
+    },
+    {
+      "id": "amazon_bow",
+      "name": "Shadow Bow / Crusader Bow",
+      "category": "class",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [6],
+      "aliases": ["shadow bow", "crusader bow", "bow"],
+      "notes": "Faith (6s). ETH for merc bow."
+    }
+  ],
+  "catch_all_rules": [
+    {
+      "id": "eth_elite_weapon_456",
+      "label": "ETH elite weapon (4/5/6 sockets)",
+      "eth_policy": "ETH",
+      "sockets_preferred": [4, 5, 6],
+      "categories": ["polearm", "sword", "axe", "maul", "staff"],
+      "notes": "Quick checklist: any ETH 4/5/6-socket elite weapon."
+    }
+  ]
+}

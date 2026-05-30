@@ -1,0 +1,94 @@
+.chrome {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 0;
+  margin: -4px -4px 8px;
+  border-bottom: 1px solid rgba(201, 162, 77, 0.25);
+  min-height: 32px;
+}
+
+.chrome__drag {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: grab;
+  user-select: none;
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+
+.chrome__drag:active {
+  cursor: grabbing;
+}
+
+.chrome__title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.chrome__brand {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #e8c872;
+}
+
+.chrome__badge {
+  font-size: 0.65rem;
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.chrome__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px 4px 0;
+  flex-shrink: 0;
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+.chrome__btn {
+  width: 28px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ddd;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.chrome__btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.chrome__btn--close:hover {
+  background: #8b3030;
+}
+
+.chrome__btn--pin-active {
+  background: rgba(201, 162, 77, 0.35);
+  border: 1px solid rgba(232, 200, 114, 0.5);
+}
+
+.chrome__unpinned {
+  font-size: 0.6rem;
+  color: #c9a24d;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.chrome__error {
+  flex-basis: 100%;
+  margin: 0;
+  padding: 2px 8px 4px;
+  font-size: 0.65rem;
+  color: #e88;
+}
