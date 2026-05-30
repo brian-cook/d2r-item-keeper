@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import magicData from "../../data/magic_presets.json";
-import type { MagicData, MagicPreset, StatValues } from "../types";
+import type { MagicData, StatValues } from "../types";
 import {
   evaluateMagicFromStats,
   evaluateMagicPreset,
@@ -21,7 +21,6 @@ export function MagicChecker() {
   const [slotId, setSlotId] = useState(data.slots[0]?.id ?? "gloves");
   const [values, setValues] = useState<StatValues>(() => emptyStats(slotId));
   const [craftingInput, setCraftingInput] = useState(false);
-  const [presetPick, setPresetPick] = useState<MagicPreset | null>(null);
 
   const slot = data.slots.find((s) => s.id === slotId)!;
 
@@ -29,7 +28,6 @@ export function MagicChecker() {
     setSlotId(id);
     setValues(emptyStats(id));
     setCraftingInput(false);
-    setPresetPick(null);
   };
 
   const statResult = useMemo(
@@ -37,15 +35,12 @@ export function MagicChecker() {
     [slot, values, craftingInput],
   );
 
-  const displayResult = presetPick
-    ? evaluateMagicPreset(presetPick)
-    : statResult;
-
+  const keepTargets = slot.presets.filter((p) => !p.crafting_only);
   const hasCrafting = slot.presets.some((p) => p.crafting_only) || slot.crafting_note;
 
   return (
     <section className="item-checker" aria-label="Magic item checker">
-      <VerdictBar result={displayResult} />
+      <VerdictBar result={statResult} />
 
       <label className="field">
         <span className="field__label">Slot</span>
@@ -67,42 +62,38 @@ export function MagicChecker() {
           <input
             type="checkbox"
             checked={craftingInput}
-            onChange={(e) => {
-              setCraftingInput(e.target.checked);
-              setPresetPick(null);
-            }}
+            onChange={(e) => setCraftingInput(e.target.checked)}
           />
           Crafting input only
         </label>
       )}
 
-      <p className="preset-section__title">Known keep targets (tap)</p>
-      <div className="btn-row">
-        {slot.presets
-          .filter((p) => !p.crafting_only)
-          .map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              className={`chip ${presetPick?.id === p.id ? "chip--active chip--preset-keep" : ""}`}
-              onClick={() => {
-                setPresetPick(presetPick?.id === p.id ? null : p);
-                setCraftingInput(false);
-              }}
-            >
-              {p.label}
-            </button>
-          ))}
-      </div>
+      {keepTargets.length > 0 && (
+        <div className="keep-targets">
+          <p className="preset-section__title">Known keep targets</p>
+          {keepTargets.map((p) => {
+            const r = evaluateMagicPreset(p);
+            const v = r.verdict.toLowerCase();
+            return (
+              <div key={p.id} className={`keep-target keep-target--${v}`}>
+                <p className="keep-target__line">
+                  <span className={`kt-badge kt-badge--${v}`}>{r.verdict}</span>
+                  {p.label}
+                </p>
+                {r.reasons.length > 0 && (
+                  <p className="keep-target__note">{r.reasons.join(" ")}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       <p className="preset-section__title">Enter rolls on item</p>
       <StatInputs
         stats={slot.stats}
         values={values}
-        onChange={(v) => {
-          setValues(v);
-          setPresetPick(null);
-        }}
+        onChange={(v) => setValues(v)}
       />
 
       {slot.crafting_note && !craftingInput && (

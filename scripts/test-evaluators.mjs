@@ -59,6 +59,28 @@ function evaluateBaseSockets({ base, sockets, unsocketed }) {
   return "CHUCK";
 }
 
+function bestVerdict(a, b) {
+  const rank = { CHUCK: 0, CHECK: 1, KEEP: 2 };
+  return rank[a] >= rank[b] ? a : b;
+}
+
+// Mirror of evaluateBase value-mod best-of logic
+function evaluateBaseFull({ base, sockets, unsocketed, valueMods }) {
+  let v = evaluateBaseSockets({ base, sockets, unsocketed });
+  if (base.value_mods && valueMods) {
+    let vv = null;
+    for (const mod of base.value_mods) {
+      const val = valueMods[mod.id];
+      if (val === undefined || val <= 0) continue;
+      const checkAt = mod.check_at ?? mod.keep_at;
+      if (val >= mod.keep_at) vv = bestVerdict(vv ?? "CHUCK", "KEEP");
+      else if (val >= checkAt) vv = bestVerdict(vv ?? "CHUCK", "CHECK");
+    }
+    if (vv) v = bestVerdict(v, vv);
+  }
+  return v;
+}
+
 const cases = [
   {
     name: "Rare amulet — KEEP",
@@ -165,6 +187,74 @@ const cases = [
     name: "Rare orb caster — KEEP (20 FCR + +3 skill)",
     run: () =>
       evaluateRareRule({ fcr: 20, main_skill: 3 }, rare.slots.orb.rules[0]),
+    expect: "KEEP",
+  },
+  {
+    name: "Demonhead is an elite Mask helm, not a shrunken head",
+    run: () => {
+      const b = findBase("demonhead");
+      return b.category === "helmet" && b.max_sockets === 3 && !/shrunken/i.test(b.name);
+    },
+    expect: true,
+  },
+  {
+    name: "Barbarian Helm present as class base with +skill value-mod",
+    run: () => {
+      const b = findBase("barb_helm");
+      return Boolean(b && b.category === "class" && b.value_mods?.some((m) => m.id === "skill"));
+    },
+    expect: true,
+  },
+  {
+    name: "Sacred Rondache present with all-res value-mod",
+    run: () => {
+      const b = findBase("sacred_rondache");
+      return Boolean(b && b.value_mods?.some((m) => m.id === "all_res"));
+    },
+    expect: true,
+  },
+  {
+    name: "Value-mod rescues wrong sockets — KEEP (Necro head 0os + +3 skill)",
+    run: () =>
+      evaluateBaseFull({
+        base: findBase("necro_head"),
+        sockets: 0,
+        unsocketed: false,
+        valueMods: { skill: 3 },
+      }),
+    expect: "KEEP",
+  },
+  {
+    name: "Near-perfect Paladin all-res — KEEP (Sacred Targe 3os + 42 res)",
+    run: () =>
+      evaluateBaseFull({
+        base: findBase("sacred_targe"),
+        sockets: 3,
+        unsocketed: false,
+        valueMods: { all_res: 42 },
+      }),
+    expect: "KEEP",
+  },
+  {
+    name: "Mid Paladin all-res — CHECK not KEEP (Sacred Targe 3os + 35 res)",
+    run: () =>
+      evaluateBaseFull({
+        base: findBase("sacred_targe"),
+        sockets: 3,
+        unsocketed: false,
+        valueMods: { all_res: 35 },
+      }),
+    expect: "CHECK",
+  },
+  {
+    name: "Low value-mod never downgrades — KEEP (Druid pelt 3os + skill 1)",
+    run: () =>
+      evaluateBaseFull({
+        base: findBase("druid_pelt"),
+        sockets: 3,
+        unsocketed: false,
+        valueMods: { skill: 1 },
+      }),
     expect: "KEEP",
   },
 ];

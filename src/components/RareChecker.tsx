@@ -27,7 +27,6 @@ const emptyStats = (slotId: string): StatValues => {
 export function RareChecker() {
   const [slotId, setSlotId] = useState(SLOT_IDS[0] ?? "amulet");
   const [values, setValues] = useState<StatValues>(() => emptyStats(slotId));
-  const [pickedTarget, setPickedTarget] = useState<string | null>(null);
 
   const slot = data.slots[slotId];
   const hasVariants = Boolean(slot?.variants?.length);
@@ -41,7 +40,6 @@ export function RareChecker() {
   const onSlotChange = (id: string) => {
     setSlotId(id);
     setValues(emptyStats(id));
-    setPickedTarget(null);
   };
 
   const liveResult = useMemo(() => {
@@ -55,14 +53,9 @@ export function RareChecker() {
 
   if (!slot) return null;
 
-  const picked = targets.find((t) => t.id === pickedTarget) ?? null;
-  const result = picked
-    ? describeRareRule(picked.rule, statLabels, picked.label)
-    : liveResult;
-
   return (
     <section className="item-checker" aria-label="Rare item checker">
-      <VerdictBar result={result} />
+      <VerdictBar result={liveResult} />
 
       <label className="field">
         <span className="field__label">Slot</span>
@@ -80,35 +73,31 @@ export function RareChecker() {
       </label>
 
       {targets.length > 0 && (
-        <>
-          <p className="preset-section__title">Known keep targets (tap)</p>
-          <div className="btn-row">
-            {targets.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                className={`chip ${pickedTarget === t.id ? "chip--active" : ""} ${
-                  t.rule.verdict === "KEEP" ? "chip--preset-keep" : ""
-                }`}
-                onClick={() =>
-                  setPickedTarget(pickedTarget === t.id ? null : t.id)
-                }
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-        </>
+        <div className="keep-targets">
+          <p className="preset-section__title">Known keep targets</p>
+          {targets.map((t) => {
+            const r = describeRareRule(t.rule, statLabels);
+            const v = r.verdict.toLowerCase();
+            return (
+              <div key={t.id} className={`keep-target keep-target--${v}`}>
+                <p className="keep-target__line">
+                  <span className={`kt-badge kt-badge--${v}`}>{r.verdict}</span>
+                  {t.label}
+                </p>
+                {r.reasons.length > 0 && (
+                  <p className="keep-target__note">{r.reasons.join(" ")}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
       )}
 
       <p className="preset-section__title">Enter affix values</p>
       <StatInputs
         stats={slot.stats}
         values={values}
-        onChange={(v) => {
-          setValues(v);
-          setPickedTarget(null);
-        }}
+        onChange={(v) => setValues(v)}
       />
 
       <MaxRollsPanel maxRolls={slot.max_rolls} />

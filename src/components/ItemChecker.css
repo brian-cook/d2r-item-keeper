@@ -120,6 +120,65 @@
   margin: 8px 0 4px;
 }
 
+.keep-targets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.keep-target {
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: rgba(61, 186, 106, 0.1);
+  border-left: 3px solid #3dba6a;
+}
+
+.keep-target--check {
+  background: rgba(232, 200, 114, 0.1);
+  border-left-color: #e8c872;
+}
+
+.keep-target--chuck {
+  background: rgba(200, 80, 80, 0.1);
+  border-left-color: rgba(200, 80, 80, 0.7);
+}
+
+.keep-target__line {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.keep-target__note {
+  margin: 3px 0 0;
+  font-size: 0.74rem;
+  opacity: 0.82;
+  font-weight: normal;
+}
+
+.kt-badge {
+  flex: 0 0 auto;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #0a0806;
+  background: #3dba6a;
+}
+
+.kt-badge--check {
+  background: #e8c872;
+}
+
+.kt-badge--chuck {
+  background: rgba(220, 90, 90, 0.95);
+  color: #f0e6d0;
+}
+
 .max-rolls {
   font-size: 0.72rem;
   margin-top: 4px;

@@ -11,6 +11,11 @@ function worstVerdict(a: Verdict, b: Verdict): Verdict {
   return rank[a] <= rank[b] ? a : b;
 }
 
+function bestVerdict(a: Verdict, b: Verdict): Verdict {
+  const rank: Record<Verdict, number> = { CHUCK: 0, CHECK: 1, KEEP: 2 };
+  return rank[a] >= rank[b] ? a : b;
+}
+
 function ethMatchesPolicy(choice: EthChoice, policy: ItemBase["eth_policy"]): boolean {
   if (policy === "BOTH") return true;
   if (choice === "either") return true;
@@ -20,7 +25,7 @@ function ethMatchesPolicy(choice: EthChoice, policy: ItemBase["eth_policy"]): bo
 }
 
 export function evaluateBase(input: BaseEvaluationInput): EvaluationResult {
-  const { base, eth, sockets, unsocketed, superiorEd } = input;
+  const { base, eth, sockets, unsocketed, superiorEd, valueMods } = input;
 
   if (!base) {
     return { verdict: "CHUCK", reasons: ["Select or search for a base item."] };
@@ -28,11 +33,13 @@ export function evaluateBase(input: BaseEvaluationInput): EvaluationResult {
 
   const reasons: string[] = [];
   let verdict: Verdict = "KEEP";
+  let ethFail = false;
 
   if (!ethMatchesPolicy(eth, base.eth_policy)) {
     const want = base.eth_policy === "ETH" ? "ethereal" : "non-ethereal";
     reasons.push(`Wrong eth: this base wants ${want} only.`);
     verdict = "CHUCK";
+    ethFail = true;
   }
 
   const preferred = base.sockets_preferred;
@@ -103,6 +110,30 @@ export function evaluateBase(input: BaseEvaluationInput): EvaluationResult {
         `Superior ED ${superiorEd}% is low — aim for ${base.superior_ed_min}%+ on this base.`,
       );
       verdict = worstVerdict(verdict, "CHECK");
+    }
+  }
+
+  // Value-driver mods (Paladin all-res automod, +skill staffmod / class
+  // automod). A premium roll can make a base a keeper on its own, so these
+  // upgrade the verdict (best-of) but never downgrade a socket-qualified base.
+  if (base.value_mods && base.value_mods.length > 0 && !ethFail) {
+    let valueVerdict: Verdict | null = null;
+    for (const mod of base.value_mods) {
+      const v = valueMods?.[mod.id];
+      if (v === undefined || Number.isNaN(v) || v <= 0) continue;
+      const checkAt = mod.check_at ?? mod.keep_at;
+      if (v >= mod.keep_at) {
+        reasons.push(`${mod.label} ${v} is a premium roll — worth keeping for this alone.`);
+        valueVerdict = bestVerdict(valueVerdict ?? "CHUCK", "KEEP");
+      } else if (v >= checkAt) {
+        reasons.push(`${mod.label} ${v} is decent (premium is ${mod.keep_at}+).`);
+        valueVerdict = bestVerdict(valueVerdict ?? "CHUCK", "CHECK");
+      } else {
+        reasons.push(`${mod.label} ${v} is low — premium is ${mod.keep_at}+.`);
+      }
+    }
+    if (valueVerdict) {
+      verdict = bestVerdict(verdict, valueVerdict);
     }
   }
 

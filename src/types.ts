@@ -3,6 +3,27 @@ export type Verdict = "KEEP" | "CHECK" | "CHUCK";
 export type EthChoice = "norm" | "eth" | "either";
 export type AppMode = "base" | "magic" | "rare";
 
+/**
+ * An optional value-driver that can make a base worth keeping on its own,
+ * independent of its socket count — e.g. the Paladin-shield all-resistance
+ * automod, or a +skill staffmod / class automod on staves, wands, daggers,
+ * and class items. Inputs only ever *upgrade* a verdict (best-of), never
+ * downgrade a base that already qualifies on sockets.
+ */
+export interface BaseValueMod {
+  /** Stat key used in the value-mod input map. */
+  id: string;
+  label: string;
+  /** Display/cap for the input (e.g. 45 for all-res, 3 for a single skill). */
+  max: number;
+  /** Value at/above which this roll alone is a strong KEEP. */
+  keep_at: number;
+  /** Value at/above which this roll alone is at least CHECK-worthy. */
+  check_at?: number;
+  /** Short "look for" guidance shown next to the input. */
+  note?: string;
+}
+
 export interface ItemBase {
   id: string;
   name: string;
@@ -14,6 +35,8 @@ export interface ItemBase {
   max_sockets?: number;
   superior_ed_min?: number;
   superior_ed_ideal?: number;
+  /** Value-driver automods/staffmods that can make this base a keeper. */
+  value_mods?: BaseValueMod[];
   flags?: string[];
   aliases?: string[];
   notes?: string;
@@ -42,6 +65,8 @@ export interface BaseEvaluationInput {
   sockets: number | null;
   unsocketed: boolean;
   superiorEd: number | null;
+  /** Optional value-mod readings keyed by BaseValueMod.id. */
+  valueMods?: Record<string, number>;
 }
 
 export interface EvaluationResult {

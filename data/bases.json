@@ -87,13 +87,12 @@
     },
     {
       "id": "demonhead",
-      "name": "Demonhead (Shrunken Head)",
+      "name": "Demonhead (elite Mask)",
       "category": "helmet",
-      "eth_policy": "ETH",
+      "eth_policy": "BOTH",
       "sockets_preferred": [3],
       "max_sockets": 3,
-      "superior_ed_min": 10,
-      "notes": "Elite necro shrunken head. ETH 3s Coven (RotW 3s helm) or Dream. Superior ETH 3s is premium."
+      "notes": "Elite Mask (Mask > Death Mask > Demonhead) - a regular 3-socket helm, NOT a Necromancer shrunken head. 3s Dream / Coven (RotW 3s helm). High STR (102); Bone Visage is the lighter elite alt. NORM to wear; ETH only for a merc."
     },
     {
       "id": "bone_visage",
@@ -158,7 +157,7 @@
       "sockets_preferred": [4],
       "max_sockets": 4,
       "flags": ["exact_socket_count"],
-      "notes": "Spirit / Exile / Phoenix base. Lowest STR (156) of the 4-socket elite shields. Larzuk gives 4 (needs ilvl 41+). Keep all non-ETH Monarchs."
+      "notes": "Spirit / Phoenix base (Exile is Paladin-shields only). Lowest STR (156) of the 4-socket elite shields. Larzuk gives 4 (needs ilvl 41+). Keep all non-ETH Monarchs."
     },
     {
       "id": "aegis",
@@ -168,7 +167,7 @@
       "sockets_preferred": [4],
       "max_sockets": 4,
       "flags": ["exact_socket_count"],
-      "notes": "4-socket elite shield (219 STR). Spirit / Exile / Phoenix alternate to Monarch."
+      "notes": "4-socket elite shield (219 STR). Spirit / Phoenix alternate to Monarch (Exile is Paladin-shields only)."
     },
     {
       "id": "ward",
@@ -178,43 +177,102 @@
       "sockets_preferred": [4],
       "max_sockets": 4,
       "flags": ["exact_socket_count"],
-      "notes": "Highest-defense non-Paladin 4-socket shield (185 STR). Exile / Phoenix."
+      "notes": "Highest-defense non-Paladin 4-socket shield (185 STR). Spirit / Phoenix (Exile is Paladin-shields only)."
     },
     {
       "id": "sacred_targe",
       "name": "Sacred Targe",
       "category": "paladin_shield",
-      "eth_policy": "NORM",
+      "eth_policy": "BOTH",
       "sockets_preferred": [4],
       "max_sockets": 4,
-      "notes": "75% base block. Preferred for Spirit / Exile / Dream."
+      "value_mods": [
+        {
+          "id": "all_res",
+          "label": "All-res automod",
+          "max": 45,
+          "keep_at": 40,
+          "check_at": 30,
+          "note": "Trade-grade needs +40-45 (top Chromatic); +45 is perfect. +30-39 is usable/mid-value, below 30 is low. Carries into Spirit/Exile/Phoenix."
+        }
+      ],
+      "notes": "Highest base block. Non-ETH 4s = Spirit; ETH 4s = Exile (premium, self-repairs). Always rolls an all-res (or AR/dmg) automod - +40-45 res is the trade bar. (Dream needs a 3-socket shield.)"
+    },
+    {
+      "id": "sacred_rondache",
+      "name": "Sacred Rondache",
+      "category": "paladin_shield",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [4],
+      "max_sockets": 4,
+      "value_mods": [
+        {
+          "id": "all_res",
+          "label": "All-res automod",
+          "max": 45,
+          "keep_at": 40,
+          "check_at": 30,
+          "note": "Trade-grade needs +40-45 (top Chromatic); +45 is perfect. +30-39 is usable/mid-value, below 30 is low. Carries into Spirit/Exile/Phoenix."
+        }
+      ],
+      "notes": "Lightest elite Paladin shield, 2nd-highest block (Alma Negra base). ETH 4s + 40-45 res = top Exile base (trades for HRs); non-ETH for Spirit."
     },
     {
       "id": "vortex_shield",
       "name": "Vortex Shield",
       "category": "paladin_shield",
-      "eth_policy": "NORM",
+      "eth_policy": "BOTH",
       "sockets_preferred": [4],
       "max_sockets": 4,
-      "notes": "75% base block; co-equal to Sacred Targe."
+      "value_mods": [
+        {
+          "id": "all_res",
+          "label": "All-res automod",
+          "max": 45,
+          "keep_at": 40,
+          "check_at": 30,
+          "note": "Trade-grade needs +40-45 (top Chromatic); +45 is perfect. +30-39 is usable/mid-value, below 30 is low. Carries into Spirit/Exile/Phoenix."
+        }
+      ],
+      "notes": "Highest-defense elite Paladin shield. BiS ETH Exile base for Smiters; non-ETH for Spirit. Lower block than Sacred Targe/Rondache."
     },
     {
       "id": "zakarum_shield",
       "name": "Zakarum Shield",
       "category": "paladin_shield",
-      "eth_policy": "NORM",
+      "eth_policy": "BOTH",
       "sockets_preferred": [4],
       "max_sockets": 4,
-      "notes": "60% base block; Exile / Conviction builds."
+      "value_mods": [
+        {
+          "id": "all_res",
+          "label": "All-res automod",
+          "max": 45,
+          "keep_at": 40,
+          "check_at": 30,
+          "note": "Trade-grade needs +40-45 (top Chromatic); +45 is perfect. +30-39 is usable/mid-value, below 30 is low. Carries into Spirit/Exile/Phoenix."
+        }
+      ],
+      "notes": "Mid block; ETH Exile or non-ETH Spirit. Value rides on a high all-res roll + 4 sockets."
     },
     {
       "id": "kurast_shield",
       "name": "Kurast Shield",
       "category": "paladin_shield",
-      "eth_policy": "NORM",
+      "eth_policy": "BOTH",
       "sockets_preferred": [4],
       "max_sockets": 4,
-      "notes": "45% base block; budget - keep if 4 sockets."
+      "value_mods": [
+        {
+          "id": "all_res",
+          "label": "All-res automod",
+          "max": 45,
+          "keep_at": 40,
+          "check_at": 30,
+          "note": "Trade-grade needs +40-45 (top Chromatic); +45 is perfect. +30-39 is usable/mid-value, below 30 is low. Carries into Spirit/Exile/Phoenix."
+        }
+      ],
+      "notes": "Lowest block of the elite Paladin shields; budget Spirit/Exile base. Only really worth keeping with 4 sockets AND a high (40+) all-res roll."
     },
     {
       "id": "grimoire_2s",
@@ -223,6 +281,16 @@
       "eth_policy": "BOTH",
       "sockets_preferred": [2],
       "aliases": ["grimoire", "grimoires", "book", "tome", "codex"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Warlock skill staffmod (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Books carry +1-3 Warlock skill staffmods; stacks with Vigilance."
+        }
+      ],
       "notes": "Vigilance (Dol + Gul, RotW 2-socket Shield/Head/Book runeword) - core Warlock off-hand. Keep all 2-socket grimoires."
     },
     {
@@ -232,6 +300,16 @@
       "eth_policy": "BOTH",
       "sockets_preferred": [2, 3],
       "aliases": ["occult tome", "occult codex", "blasphemous grimoire", "blasphemous compendium", "forgotten volume"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Warlock skill staffmod (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Elite books carry the highest Warlock skill staffmods; stacks with Vigilance."
+        }
+      ],
       "notes": "Elite-tier RotW books (highest Warlock staffmods). Keep clean 2-3 socket bases for Vigilance or unique re-rolls."
     },
     {
@@ -413,6 +491,16 @@
       "eth_policy": "BOTH",
       "sockets_preferred": [6],
       "max_sockets": 6,
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+skill staffmod (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Staffmod +1-3 to up to 3 skills; stacks with the runeword (a +3 base can reach +7 in-runeword)."
+        }
+      ],
       "notes": "6s Obsession (premium caster/Warlock 2H). Larzuk gives 6. +3 staffmod base can reach +7 to a skill."
     },
     {
@@ -422,6 +510,16 @@
       "eth_policy": "BOTH",
       "sockets_preferred": [6],
       "max_sockets": 6,
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+skill staffmod (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Staffmod +1-3 to up to 3 skills; stacks with the runeword."
+        }
+      ],
       "notes": "Exceptional staff in the same line - also 6s Obsession base."
     },
     {
@@ -432,6 +530,16 @@
       "sockets_preferred": [3],
       "max_sockets": 3,
       "aliases": ["dagger", "fanged"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Warlock skill mod (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "RotW daggers can roll +1-3 Warlock skill mods; stacks with Void / Ritual."
+        }
+      ],
       "notes": "Only elite dagger that reaches 3 sockets (Larzuk gives 3). Void / Ritual (RotW 3s dagger runewords). Keep non-ETH; +Warlock skill mods add value. (Legend Spike maxes at 2 - cannot do these.)"
     },
     {
@@ -455,6 +563,26 @@
       "notes": "Elite 3s Mosaic / Chaos claw. Mosaic disabled on S14 ladder; non-ladder only."
     },
     {
+      "id": "barb_helm",
+      "name": "Barbarian Helm (Carnage Helm / Fury Visor / Destroyer / Conqueror / Guardian Crown)",
+      "category": "class",
+      "eth_policy": "BOTH",
+      "sockets_preferred": [2, 3],
+      "max_sockets": 3,
+      "aliases": ["barb helm", "barbarian helm", "primal helm", "carnage helm", "fury visor", "destroyer helm", "conqueror crown", "guardian crown"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Barb skill (best single, e.g. Battle Orders)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Rolls +1-3 to up to 3 Barb skills. +3 Battle Orders / Warcry is premium; can stack 3 separate skill automods."
+        }
+      ],
+      "notes": "Barb-only (also a Barb Act 5 merc). 2s Lore / 3s Dream, or keep for a strong +skill automod (e.g. +3 Battle Orders)."
+    },
+    {
       "id": "druid_pelt",
       "name": "Druid Pelt",
       "category": "class",
@@ -462,6 +590,16 @@
       "sockets_preferred": [3],
       "max_sockets": 3,
       "aliases": ["pelt"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Druid skill (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Pelts roll +1-3 to up to 3 Druid skills; stacks with Dream."
+        }
+      ],
       "notes": "Dream (3s) or high +skills. (Spirit is sword/shield only - not pelts.)"
     },
     {
@@ -472,7 +610,17 @@
       "sockets_preferred": [2],
       "max_sockets": 3,
       "aliases": ["shrunken head", "necro shield"],
-      "notes": "Rhyme / Splendor / Vigilance (2s). Max 3 sockets - Spirit needs 4, so not possible here."
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Necro skill (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Shrunken heads roll +1-3 to up to 3 Necro skills; +3 to a key curse/summon is premium."
+        }
+      ],
+      "notes": "Rhyme / Splendor / Vigilance (2s), or keep for strong +Necro skill automods. Max 3 sockets - Spirit needs 4, so not possible here."
     },
     {
       "id": "necro_wand",
@@ -482,6 +630,16 @@
       "sockets_preferred": [2],
       "max_sockets": 2,
       "aliases": ["wand"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Necro skill (Bone Spear / Bone Armor for White)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "White wants +2-3 Bone Spear AND +3 Bone Armor staffmods; White (Dol Io) adds more."
+        }
+      ],
       "notes": "White wand with +3 to a skill (Bone Spear / Bone Armor) for White runeword (Dol Io)."
     },
     {
@@ -492,6 +650,16 @@
       "sockets_preferred": [4],
       "max_sockets": 5,
       "aliases": ["grand matron bow", "gmb", "matriarchal bow", "shadow bow", "bow"],
+      "value_mods": [
+        {
+          "id": "skill",
+          "label": "+Amazon skill (best single)",
+          "max": 3,
+          "keep_at": 3,
+          "check_at": 2,
+          "note": "Amazon bows roll +1-3 to up to 3 Amazon skills; stacks with Faith / Harmony."
+        }
+      ],
       "notes": "Faith (4s). Needs a natural 4os since Larzuk gives 5. BiS Grand Matron Bow; Matriarchal/Shadow Bow are fast alts. ETH for a merc bow."
     }
   ],
